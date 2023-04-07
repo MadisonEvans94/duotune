@@ -184,7 +184,7 @@ class ChatRoomsbyID(Resource):
 
         chat_room = ChatRoom.query.filter_by(id=id).first()
         if not chat_room:
-            abort(404, 'User not found!')
+            return make_response(jsonify("chat_room not found"), 404)
 
         chat_room_dict = chat_room.to_dict()
 
@@ -304,7 +304,7 @@ class Signup(Resource):
         db.session.add(new_user)
         db.session.commit()
         response = make_response(
-            new_user.to_dict(),
+            jsonify(new_user.to_dict()),
             201
         )
         return response

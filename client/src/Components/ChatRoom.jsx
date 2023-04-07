@@ -1,9 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-const ChatRoom = ({ chatRoom, setMessages, recipient }) => {
-	const [chatRoomMessages, setChatRoomMessages] = useState(null);
+const ChatRoom = ({
+	chatRoom,
+	setMessages,
+	recipient,
+	chatRoomMessages,
+	setChatRoomMessages,
+}) => {
 	const [otherUser, setOtherUser] = useState(null);
+
 	function populateChatRoom() {
 		setMessages(chatRoomMessages);
 
@@ -14,13 +20,16 @@ const ChatRoom = ({ chatRoom, setMessages, recipient }) => {
 				setMessages(chatRoomInstance.messages);
 			});
 	}
+
 	useEffect(() => {
 		fetch(`/users/${recipient}`)
 			.then((res) => res.json())
 			.then((user) => {
 				setOtherUser(user);
-			});
+			})
+			.catch((error) => console.log("CHATROOM COMPONENT: ", error));
 	}, [recipient]);
+
 	return (
 		otherUser && (
 			<motion.li

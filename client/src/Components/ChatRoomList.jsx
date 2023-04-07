@@ -1,10 +1,11 @@
 import React from "react";
 import UserContext from "./Contexts/UserContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import ChatRoom from "./ChatRoom";
 const ChatRoomList = ({ setMessages, recipients, chatRooms }) => {
 	const { user } = useContext(UserContext);
+	const [chatRoomMessages, setChatRoomMessages] = useState(null);
 	const updatedRecipients = recipients.filter((value) => value !== user.id);
 	console.log(chatRooms);
 	return chatRooms.length > 0 ? (
@@ -19,6 +20,8 @@ const ChatRoomList = ({ setMessages, recipients, chatRooms }) => {
 					recipient={recipient}
 					setMessages={setMessages}
 					chatRoom={chatRooms[key]}
+					chatRoomMessages={chatRoomMessages}
+					setChatRoomMessages={setChatRoomMessages}
 				/>
 			))}
 		</ul>

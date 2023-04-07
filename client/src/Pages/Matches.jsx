@@ -16,15 +16,20 @@ export default function Matches() {
 		const chatroomIdList = user.chat_rooms.map((chatroom) => chatroom.id);
 		setRecipients(chatroomIdList);
 		const fetchData = async () => {
-			const chatroomResponse = await fetch(
-				`/chat_rooms/${user.chat_rooms[0].id}`
-			);
-			const chatroomInstance = await chatroomResponse.json();
-			setMessages(chatroomInstance.messages);
+			try {
+				const chatroomResponse = await fetch(
+					`/chat_rooms/${user.chat_rooms[0].id}`
+				);
+				const chatroomInstance = await chatroomResponse.json();
+
+				setMessages(chatroomInstance.messages);
+			} catch (error) {
+				console.error("Error fetching data:", error);
+			}
 		};
 
 		fetchData();
-	}, [user.id]);
+	}, [user.chat_rooms, user.id]);
 
 	return (
 		<div className="h-full">
