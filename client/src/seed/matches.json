@@ -1,0 +1,37 @@
+[
+	{
+		"artist_name": "Rihanna",
+		"user_type": { "name": "Vocalist" },
+		"profile_picture_url": "https://www.instyle.com/thmb/Ba2I4ctajPB_nMWF8SiyVv-cazw=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/rihanna-workout-video-baby-boy-twitter-lead-5a36f3090a9d4741904f591cd7cd80fb.jpg"
+	},
+	{
+		"artist_name": "Baby Keem",
+		"user_type": { "name": "Rapper/Vocalist" },
+		"profile_picture_url": "https://i.scdn.co/image/ab6761610000e5ebd6f2323c1971fd5a70cd0255"
+	},
+	{
+		"artist_name": "Miley Cyrus",
+		"user_type": { "name": "Vocalist" },
+		"profile_picture_url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Miley_Cyrus_Primavera19_-226_%2848986293772%29_%28cropped%29.jpg"
+	},
+	{
+		"artist_name": "Kenny Beats",
+		"user_type": { "name": "Producer" },
+		"profile_picture_url": "https://www.nme.com/wp-content/uploads/2020/03/KennyBeats_ArisChatman.jpg"
+	},
+	{
+		"artist_name": "Lil Dicky",
+		"user_type": { "name": "Rapper" },
+		"profile_picture_url": "https://imgix.bustle.com/wmag/2016/07/18/578d3cd257a63ce6129955e7_062916_W_LilDicky_0325crop.jpg?w=414&h=580&fit=crop&crop=faces&auto=format%2Ccompress"
+	},
+	{
+		"artist_name": "Tame Impala",
+		"user_type": { "name": "Vocalist, Instrumentalist" },
+		"profile_picture_url": "https://www.rollingstone.com/wp-content/uploads/2019/05/tame-impala-lead-photo.jpg"
+	},
+	{
+		"artist_name": "Marc Rebillet",
+		"user_type": { "name": "Vocalist, Instrumentalist" },
+		"profile_picture_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Marc_Rebillet_1_%28cropped%29.jpg/640px-Marc_Rebillet_1_%28cropped%29.jpg"
+	}
+]

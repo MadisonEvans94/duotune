@@ -1,0 +1,52 @@
+[
+	{
+		"artistName": "The Weeknd",
+		"artistType": "Singer",
+		"image": "https://www.billboard.com/wp-content/uploads/media/02-the-weeknd-press-2019-cr-Nabil-Elderkin-billboard-1548.jpg?w=1024",
+		"location": "Los Angeles, California",
+		"genre": "Pop",
+		"blurb": "Hi I'm The Weeknd and I'm a vocalist from LA. Hmu and let's make a hit",
+		"collaboratorId": 1,
+		"audioFile": "https://res.cloudinary.com/degnyqukw/video/upload/v1680658098/carti_thing_ih9wft.mp3"
+	},
+	{
+		"artistName": "Mura Masa",
+		"artistType": "Producer",
+		"image": "https://thefader-res.cloudinary.com/private_images/w_1440,c_limit,f_auto,q_auto:best/1Night_01_1-1_g9qq0o/mura-masa-self-titled-album-lovesick-1-night-interview.jpg",
+		"location": "London, England",
+		"genre": "Hip-Hop",
+		"blurb": "Hey everyone it's Mura Masa. For those of you who don't know me, I'm a music producer from the UK. I'm looking for a vocalist for my next EP",
+		"collaboratorId": 2,
+		"audioFile": "https://res.cloudinary.com/degnyqukw/video/upload/v1680658098/carti_thing_ih9wft.mp3"
+	},
+	{
+		"artistName": "Carti",
+		"artistType": "Rapper",
+		"image": "https://i.guim.co.uk/img/media/a6d708b3363d3537ce431767e9c8b1cc58927eeb/1063_5_2768_1661/master/2768.jpg?width=1200&height=1200&quality=85&auto=format&fit=crop&s=1def6c38e0b6db9a68ba5a6e2dbc9735",
+		"location": "USA",
+		"genre": "Rap",
+		"blurb": "lehgo",
+		"collaboratorId": 3,
+		"audioFile": "https://res.cloudinary.com/degnyqukw/video/upload/v1680658098/carti_thing_ih9wft.mp3"
+	},
+	{
+		"artistName": "Bassix",
+		"artistType": "Guitarist",
+		"image": "https://images.unsplash.com/photo-1595971294624-80bcf0d7eb24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bXVzaWNpYW58ZW58MHx8MHx8&auto=format&fit=crop&w=1600&q=60",
+		"location": "Mexico City, Mexico",
+		"genre": "Funk",
+		"blurb": "I'm bass buddy and I'm all about that bass ya dig",
+		"collaboratorId": 4,
+		"audioFile": "https://res.cloudinary.com/degnyqukw/video/upload/v1680658098/carti_thing_ih9wft.mp3"
+	},
+	{
+		"artistName": "Dafodill",
+		"artistType": "Vocalist",
+		"image": "https://images.unsplash.com/photo-1526218626217-dc65a29bb444?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dm9jYWxpc3R8ZW58MHx8MHx8&auto=format&fit=crop&w=1600&q=60",
+		"location": "Chicago, Illinois",
+		"genre": "Pop",
+		"blurb": "Hi I'm Tyler the Artist. Tyler the Creator was taken.. so yeah ",
+		"collaboratorId": 5,
+		"audioFile": "https://res.cloudinary.com/degnyqukw/video/upload/v1680658098/carti_thing_ih9wft.mp3"
+	}
+]

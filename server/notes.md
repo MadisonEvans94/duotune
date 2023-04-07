@@ -1,0 +1,38 @@
+#### Example User
+
+{
+"artist_name": "Tyler the Creator",
+"bio": "Account news hundred painting economy. Meeting happy form word.\nCongress class author between purpose fund. Clear fall plan claim perform weight. Reveal movie team respond per.",
+"created_at": "2023-04-03 17:15:41",
+"email": "tyler_thecreator@gmail.com",
+"experience_level": "Advanced",
+"first_name": "Tyler",
+"id": 1,
+"last_name": "The Creator",
+"location": "482 Juan Pike\nNew Jeremiah, RI 24051",
+"profile_picture_url": "https://www.rollingstone.com/wp-content/uploads/2019/05/TylerTheCreator_SamRock.jpg",
+"song_sample": null,
+"updated_at": null,
+"user_type": {
+"id": 1,
+"name": "Musician",
+"users": [
+{
+"artist_name": "Tyler the Creator",
+"bio": "Account news hundred painting economy. Meeting happy form word.\nCongress class author between purpose fund. Clear fall plan claim perform weight. Reveal movie team respond per.",
+"created_at": "2023-04-03 17:15:41",
+"email": "tyler_thecreator@gmail.com",
+"experience_level": "Advanced",
+"first_name": "Tyler",
+"id": 1,
+"last_name": "The Creator",
+"location": "482 Juan Pike\nNew Jeremiah, RI 24051",
+"profile_picture_url": "https://www.rollingstone.com/wp-content/uploads/2019/05/TylerTheCreator_SamRock.jpg",
+"song_sample": null,
+"updated_at": null,
+"user_type_id": 1
+}
+]
+},
+"user_type_id": 1
+}
