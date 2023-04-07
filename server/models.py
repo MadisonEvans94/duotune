@@ -15,6 +15,18 @@ class Swipe(db.Model, SerializerMixin):
 
     swiper = db.relationship('User', foreign_keys=[swiper_id], backref='swiper_swipes')
     swiped = db.relationship('User', foreign_keys=[swiped_id], backref='swiped_swipes')
+
+    serialize_rules = (
+        '-swiper.swiper_swipes',
+        '-swiper.swiped_swipes',
+        '-swiper.song_sample',
+        '-swiper.chat_rooms',
+        '-swiped.swiper_swipes',
+        '-swiped.swiped_swipes',
+        '-swiped.song_sample',
+        '-swiped.chat_rooms',
+    )
+
     
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'
@@ -44,7 +56,7 @@ class User(db.Model, SerializerMixin):
     swiped_on = db.relationship('Swipe', foreign_keys=[Swipe.swiped_id], back_populates='swiped', overlaps="swiped_swipes")
 
     # serialize rules 
-    serialize_rules = ('-password_hash', '-user_type.users', '-song_sample.user')
+    serialize_rules = ('-password_hash', '-user_type.users', '-song_sample.user', '-swiped_by', '-swiped_on')
 
     def set_password(self, password):
         self.password_hash = bcrypt.generate_password_hash(password).decode('utf-8')

@@ -50,7 +50,9 @@ const ChatRoomContent = ({ messages, setMessages }) => {
 
 			const newMessage = await response.json();
 
-			setMessages((prevMessages) => [...prevMessages, newMessage]);
+			setMessages((prevMessages) =>
+				prevMessages ? [...prevMessages, newMessage] : [newMessage]
+			);
 			setFormMessage("");
 		} catch (error) {
 			console.error("Error:", error);

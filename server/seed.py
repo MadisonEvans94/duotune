@@ -101,6 +101,17 @@ def make_users():
             'experience_level': 'Advanced',
             'user_type_id': 1
         }
+    admin2 = {
+            'first_name': 'M',
+            'last_name': 'E',
+            'profile_picture_url': 'https://res.cloudinary.com/degnyqukw/image/upload/v1680801655/IMG_4344_n4ytjt.jpg',
+            'email': 'm.corb@gmail.com',
+            'artist_name': 'Blue Cloud',
+            'bio': 'Im a music producer named Blue Cloud',
+            'location': '482 Juan Pike\nNew Jeremiah, RI 24051',
+            'experience_level': 'Advanced',
+            'user_type_id': 1
+        }
     for user_data in users:
         user = User(**user_data)
         user.set_password(f"{i}")
@@ -108,9 +119,11 @@ def make_users():
         i+=1
 
     Madison = User(**admin)
+    Person2 = User(**admin2)
     Madison.set_password("123")
+    Person2.set_password("321")
     db.session.add(Madison)
-
+    db.session.add(Person2)
     db.session.commit()
 
 def create_swipes():

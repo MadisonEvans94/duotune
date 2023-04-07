@@ -7,7 +7,6 @@ import { FaUserFriends as Connect } from "react-icons/fa";
 const Profile = () => {
 	const { user } = useContext(UserContext);
 
-	// TODO: switch these constants out for real data
 	const data = {
 		genres: ["hip-hop", "r&b"],
 		social_links: ["https://twitter.com/", "https://soundcloud.com/"],

@@ -8,17 +8,21 @@ import {
 import CollaboratorCard from "../Components/CollaboratorCard";
 import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
-
+import { useContext } from "react";
+import UserContext from "../Components/Contexts/UserContext";
 const Explore = () => {
-	const [collaboratorCount, setCollaboratorCount] = useState(0);
+	const [collaboratorCount, setCollaboratorCount] = useState(1);
 	const [exitDirection, setExitDirection] = useState(0);
 	const [directionChanged, setDirectionChanged] = useState(false);
 	const [userPool, setUserPool] = useState(null);
+	const { user } = useContext(UserContext);
 
 	useEffect(() => {
 		fetch("/users")
 			.then((res) => res.json())
-			.then((users) => setUserPool(users));
+			.then((users) => {
+				setUserPool(users);
+			});
 	}, []);
 
 	useEffect(() => {
@@ -29,11 +33,41 @@ const Explore = () => {
 	}, [directionChanged]);
 
 	function rightClick() {
+		const swipeData = {
+			swiper_id: user.id,
+			swiped_id: userPool[collaboratorCount].id,
+			liked: true,
+		};
+		fetch("/swipes", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(swipeData),
+		})
+			.then((res) => res.json())
+			.then((data) => console.log("Swipe created:", data))
+			.catch((error) => console.log("Error:", error));
 		setExitDirection(1);
 		setDirectionChanged(true);
 	}
 
 	function leftClick() {
+		// const swipeData = {
+		// 	swiper_id: user.id,
+		// 	swiped_id: userPool[collaboratorCount].id,
+		// 	liked: false,
+		// };
+		// fetch("/swipes", {
+		// 	method: "POST",
+		// 	headers: {
+		// 		"Content-Type": "application/json",
+		// 	},
+		// 	body: JSON.stringify(swipeData),
+		// })
+		// 	.then((res) => res.json())
+		// 	.then((data) => console.log("Swipe created:", data))
+		// 	.catch((error) => console.log("Error:", error));
 		setExitDirection(-1);
 		setDirectionChanged(true);
 	}
@@ -56,7 +90,7 @@ const Explore = () => {
 
 			<div className="flex flex-row justify-center items-center h-full">
 				<AnimatePresence mode="wait">
-					{userPool && (
+					{userPool && collaboratorCount < userPool.length && (
 						<CollaboratorCard
 							key={userPool[collaboratorCount].id}
 							image={userPool[collaboratorCount].profile_picture_url}
