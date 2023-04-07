@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 
 from faker import Faker
-from models import db, User, UserType, ChatRoom, Message, ChatRoomUser
+from models import db, User, UserType, ChatRoom, Message, ChatRoomUser, Swipe
 from app import app
 from random import choice
 
 fake = Faker()
 
-USER_QTY = 50
+USER_QTY = 12
 # Conversation 1
 conversation1 = [
   "Hey, have you worked on any music recently?",
@@ -113,7 +113,14 @@ def make_users():
 
     db.session.commit()
 
-
+def create_swipes():
+    for i in range(1, 4):
+        swipe = Swipe(swiper_id=1, swiped_id=i + 2, liked=True)
+        db.session.add(swipe)
+        swipe = Swipe(swiper_id=i + 2, swiped_id=1, liked=True)
+        db.session.add(swipe)
+    db.session.commit()
+    
 def create_chat_rooms_and_matches():
     chat_room_ids = []
 
@@ -136,6 +143,29 @@ def create_chat_rooms_and_matches():
 
     return chat_room_ids
 
+def create_chat_rooms_and_matches():
+    chat_room_ids = []
+
+    for i in range(1, 4):
+        user1 = db.session.get(User, 1)
+        user2 = db.session.get(User, i + 2)
+
+        mutual_swipe = Swipe.query.filter_by(swiper_id=user2.id, swiped_id=user1.id, liked=True).first()
+
+        if mutual_swipe:
+            chat_room = ChatRoom()
+            db.session.add(chat_room)
+            db.session.commit()
+
+            chat_room_user1 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user1.id)
+            chat_room_user2 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user2.id)
+
+            db.session.add_all([chat_room_user1, chat_room_user2])
+            db.session.commit()
+
+            chat_room_ids.append(chat_room.id)
+
+    return chat_room_ids
 
 def add_messages(chat_room_ids):
     conversations = [conversation1, conversation2, conversation3]
