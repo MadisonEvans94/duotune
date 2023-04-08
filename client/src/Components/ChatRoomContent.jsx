@@ -63,6 +63,7 @@ const ChatRoomContent = ({ displayedMessages, setDisplayedMessages }) => {
 			console.error("\n\nCHATROOMCONTENT COMPONENT: Error:", error);
 		}
 	};
+	console.log("\n\n\n**TESTING**\n\n\n", displayedMessages);
 	return (
 		<div className="w-full pt-4 h-full flex flex-col border-t">
 			{displayedMessages ? (
@@ -72,15 +73,15 @@ const ChatRoomContent = ({ displayedMessages, setDisplayedMessages }) => {
 						return (
 							<div
 								key={index}
-								className={`flex ${
+								className={`flex flex-row ${
 									isUser ? "justify-end" : "justify-start"
 								} mb-4`}>
-								<div
+								<p
 									className={`px-4 py-2 rounded-lg ${
 										isUser ? "bg-accent text-info" : "bg-gray-200 text-dark"
 									}`}>
 									{message.content}
-								</div>
+								</p>
 							</div>
 						);
 					})}

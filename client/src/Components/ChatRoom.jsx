@@ -6,9 +6,8 @@ const ChatRoom = ({ chatRoomObject, setDisplayedMessages }) => {
 	const [otherUser, setOtherUser] = useState(null);
 	const { user } = useContext(UserContext);
 	function populateChatRoom() {
-		setDisplayedMessages(
-			chatRoomObject.messages.map((messageObject) => messageObject.content)
-		);
+		const messageContent = chatRoomObject.messages;
+		setDisplayedMessages(chatRoomObject.messages);
 	}
 
 	useEffect(() => {
@@ -17,7 +16,6 @@ const ChatRoom = ({ chatRoomObject, setDisplayedMessages }) => {
 		const otherChatRoomUser = usersInChat.find(
 			(chatRoomUser) => chatRoomUser.user_id !== user.id
 		);
-		console.log("\n\n\n**TESTING**\n\n\n", otherChatRoomUser.user_id);
 
 		const fetchOtherUser = async () => {
 			const data = await fetch(`/users/${otherChatRoomUser.user_id}`);
