@@ -17,9 +17,11 @@ export default function Matches() {
 			for (const chatroom of user.chat_rooms) {
 				const chatroomResponse = await fetch(`/chat_rooms/${chatroom.id}`);
 				const chatroomInstance = await chatroomResponse.json();
+
 				fetchedChatRooms.push(chatroomInstance);
 			}
 
+			console.log("FETCHED CHATROOMS: ", fetchedChatRooms);
 			setChatRooms(fetchedChatRooms);
 			// TODO: change it so that instead of fetchedChatRooms[0],
 			//TODO: it is instead fetchedChatRooms[i] where i is the index of whatever chatRoom object in the list that you click on

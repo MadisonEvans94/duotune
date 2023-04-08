@@ -64,7 +64,7 @@ const ChatRoomContent = ({ messages, setMessages }) => {
 			{messages ? (
 				<div className="px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto">
 					{messages.map((message, index) => {
-						const isUser = message.sender_id === 1;
+						const isUser = message.sender_id === user.id;
 						return (
 							<div
 								key={index}
