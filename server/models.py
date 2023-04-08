@@ -129,7 +129,7 @@ class ChatRoom(db.Model, SerializerMixin):
     
     
     # serialize rules 
-    serialize_only = ('id', 'created_at', 'messages', 'chat_room_users')
+    serialize_only = ('id', 'created_at', 'messages', )
 
     
 class Message(db.Model, SerializerMixin):

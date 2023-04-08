@@ -11,8 +11,6 @@ const ChatRoom = ({
 	const [otherUser, setOtherUser] = useState(null);
 
 	function populateChatRoom() {
-		setMessages(chatRoomMessages);
-
 		fetch(`/chat_rooms/${chatRoom.id}`)
 			.then((res) => res.json())
 			.then((chatRoomInstance) => {

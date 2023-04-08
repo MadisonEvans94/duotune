@@ -34,6 +34,7 @@ export default function Matches() {
 	useEffect(() => {
 		const chatroomIdList = user.chat_rooms.map((chatroom) => chatroom.id);
 		setRecipients(chatroomIdList);
+		console.log("chttttidlist:", chatroomIdList);
 		fetchData();
 	}, [user.chat_rooms, user.id]);
 
