@@ -279,9 +279,11 @@ class Swipes(Resource):
             db.session.commit()
 
             # Return a success message indicating that a match has been found and a chat room has been created
-            return {'message': 'Match found and chat room created'}, 201
+            # return {'message': f'Match found and chat room created. Chatroom id: {chat_room.id} Matched Users: {swiper_id} and {swiped_id}'}, 201
+            return make_response(jsonify(["match",chat_room.to_dict()]),
+            201)
         # If there is no mutual match, return a success message indicating that the swipe has been recorded
-        return {'message': 'Swipe recorded'}, 201
+        return {'message': f'Swipe recorded. User {swiper_id} swiped on user {swiped_id}'}, 201
     
 api.add_resource(Home, '/')
 api.add_resource(UsersbyID, '/users/<int:id>')

@@ -4,28 +4,16 @@ import colors from "../utils/colorPalette";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
-const ChatRoomContent = ({ messages, setMessages }) => {
+const ChatRoomContent = ({ displayedMessages, setDisplayedMessages }) => {
+	console.log(
+		`\n\nCHATROOMCONTENT COMPONENT: 'messages': ${displayedMessages}`,
+		displayedMessages
+	);
 	const [formMessage, setFormMessage] = useState("");
 	const { user } = useContext(UserContext);
 	const handleInputChange = (e) => {
 		setFormMessage(e.target.value);
 	};
-
-	// def post(self):
-	//     data = request.get_json()
-	//     content = data.get("content")
-	//     chat_room_id = data.get("chat_room_id")
-	//     sender_id = data.get("sender_id")
-
-	//     new_message = Message(content=content, sender_id=sender_id, chat_room_id=chat_room_id)
-	//     db.session.add(new_message)
-	//     db.session.commit()
-
-	//     response = make_response(
-	//         jsonify(new_message.to_dict()),
-	//         201
-	//     )
-	//     return response
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -45,37 +33,39 @@ const ChatRoomContent = ({ messages, setMessages }) => {
 			});
 
 			if (!response.ok) {
-				throw new Error("Error sending message.");
+				throw new Error("\n\nCHATROOM COMPONENT: Error sending message.");
 			}
 
 			const newMessage = await response.json();
-
-			setMessages((prevMessages) =>
-				prevMessages ? [...prevMessages, newMessage] : [newMessage]
-			);
+			setDisplayedMessages.length > 0
+				? setDisplayedMessages((prevMessages) =>
+						prevMessages ? [...prevMessages, newMessage] : [newMessage]
+				  )
+				: setDisplayedMessages(newMessage);
 			setFormMessage("");
 		} catch (error) {
-			console.error("Error:", error);
+			console.error("\n\nCHATROOMCONTENT COMPONENT: Error:", error);
 		}
 	};
+	console.log("\n\n\n**TESTING**\n\n\n", displayedMessages);
 	return (
 		<div className="w-full pt-4 h-full flex flex-col border-t">
-			{messages ? (
+			{displayedMessages ? (
 				<div className="px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto">
-					{messages.map((message, index) => {
-						const isUser = message.sender_id === 1;
+					{displayedMessages.map((message, index) => {
+						const isUser = message.sender_id === user.id;
 						return (
 							<div
 								key={index}
-								className={`flex ${
+								className={`flex flex-row ${
 									isUser ? "justify-end" : "justify-start"
 								} mb-4`}>
-								<div
+								<p
 									className={`px-4 py-2 rounded-lg ${
 										isUser ? "bg-accent text-info" : "bg-gray-200 text-dark"
 									}`}>
 									{message.content}
-								</div>
+								</p>
 							</div>
 						);
 					})}

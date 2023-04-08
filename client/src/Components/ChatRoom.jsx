@@ -1,34 +1,35 @@
-import React from "react";
+import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-const ChatRoom = ({
-	chatRoom,
-	setMessages,
-	recipient,
-	chatRoomMessages,
-	setChatRoomMessages,
-}) => {
+import UserContext from "./Contexts/UserContext";
+const ChatRoom = ({ chatRoomObject, setDisplayedMessages }) => {
 	const [otherUser, setOtherUser] = useState(null);
+	const { user } = useContext(UserContext);
 
+	console.log("CHATROOM COMPONENT: Chat room object: ", chatRoomObject);
 	function populateChatRoom() {
-		setMessages(chatRoomMessages);
-
-		fetch(`/chat_rooms/${chatRoom.id}`)
-			.then((res) => res.json())
-			.then((chatRoomInstance) => {
-				setChatRoomMessages(chatRoomMessages);
-				setMessages(chatRoomInstance.messages);
-			});
+		console.log(chatRoomObject);
+		setDisplayedMessages(chatRoomObject.messages);
 	}
 
 	useEffect(() => {
-		fetch(`/users/${recipient}`)
-			.then((res) => res.json())
-			.then((user) => {
-				setOtherUser(user);
-			})
-			.catch((error) => console.log("CHATROOM COMPONENT: ", error));
-	}, [recipient]);
+		if (!chatRoomObject.chat_room_users) return;
+
+		const usersInChat = chatRoomObject.chat_room_users;
+
+		const otherChatRoomUser = usersInChat.find(
+			(chatRoomUser) => chatRoomUser.user_id !== user.id
+		);
+
+		const fetchOtherUser = async () => {
+			const data = await fetch(`/users/${otherChatRoomUser.user_id}`);
+			const otherUser = await data.json();
+			console.log("OTHER USER \n\n\n", otherUser);
+			setOtherUser(otherUser);
+		};
+		fetchOtherUser().catch(console.error);
+		console.log("CHATROOM COMPONENT: other user", otherUser);
+	}, []);
 
 	return (
 		otherUser && (

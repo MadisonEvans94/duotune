@@ -7,7 +7,7 @@ from random import choice
 
 fake = Faker()
 
-USER_QTY = 12
+USER_QTY = 3
 # Conversation 1
 conversation1 = [
   "Hey, have you worked on any music recently?",
@@ -104,9 +104,9 @@ def make_users():
     admin2 = {
             'first_name': 'M',
             'last_name': 'E',
-            'profile_picture_url': 'https://res.cloudinary.com/degnyqukw/image/upload/v1680801655/IMG_4344_n4ytjt.jpg',
+            'profile_picture_url': fake.image_url(),
             'email': 'm.corb@gmail.com',
-            'artist_name': 'Blue Cloud',
+            'artist_name': 'FAKEACCT',
             'bio': 'Im a music producer named Blue Cloud',
             'location': '482 Juan Pike\nNew Jeremiah, RI 24051',
             'experience_level': 'Advanced',
@@ -126,72 +126,72 @@ def make_users():
     db.session.add(Person2)
     db.session.commit()
 
-def create_swipes():
-    for i in range(1, 4):
-        swipe = Swipe(swiper_id=1, swiped_id=i + 2, liked=True)
-        db.session.add(swipe)
-        swipe = Swipe(swiper_id=i + 2, swiped_id=1, liked=True)
-        db.session.add(swipe)
-    db.session.commit()
+# def create_swipes():
+#     for i in range(1, 4):
+#         swipe = Swipe(swiper_id=1, swiped_id=i + 2, liked=True)
+#         db.session.add(swipe)
+#         swipe = Swipe(swiper_id=i + 2, swiped_id=1, liked=True)
+#         db.session.add(swipe)
+#     db.session.commit()
     
-def create_chat_rooms_and_matches():
-    chat_room_ids = []
+# def create_chat_rooms_and_matches():
+#     chat_room_ids = []
 
-    for i in range(1, 4):
-        chat_room = ChatRoom()
-        db.session.add(chat_room)
-        db.session.commit()
+#     for i in range(1, 4):
+#         chat_room = ChatRoom()
+#         db.session.add(chat_room)
+#         db.session.commit()
 
-        user1 = db.session.get(User, 1)
-        user2 = db.session.get(User, i + 2)
+#         user1 = db.session.get(User, 1)
+#         user2 = db.session.get(User, i + 2)
 
-        # Create ChatRoomUser instances for both users
-        chat_room_user1 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user1.id)
-        chat_room_user2 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user2.id)
+#         # Create ChatRoomUser instances for both users
+#         chat_room_user1 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user1.id)
+#         chat_room_user2 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user2.id)
 
-        db.session.add_all([chat_room_user1, chat_room_user2])
-        db.session.commit()
+#         db.session.add_all([chat_room_user1, chat_room_user2])
+#         db.session.commit()
 
-        chat_room_ids.append(chat_room.id)
+#         chat_room_ids.append(chat_room.id)
 
-    return chat_room_ids
+#     return chat_room_ids
 
-def create_chat_rooms_and_matches():
-    chat_room_ids = []
+# def create_chat_rooms_and_matches():
+#     chat_room_ids = []
 
-    for i in range(1, 4):
-        user1 = db.session.get(User, 1)
-        user2 = db.session.get(User, i + 2)
+#     for i in range(1, 4):
+#         user1 = db.session.get(User, 1)
+#         user2 = db.session.get(User, i + 2)
 
-        mutual_swipe = Swipe.query.filter_by(swiper_id=user2.id, swiped_id=user1.id, liked=True).first()
+#         mutual_swipe = Swipe.query.filter_by(swiper_id=user2.id, swiped_id=user1.id, liked=True).first()
 
-        if mutual_swipe:
-            chat_room = ChatRoom()
-            db.session.add(chat_room)
-            db.session.commit()
+#         if mutual_swipe:
+#             chat_room = ChatRoom()
+#             db.session.add(chat_room)
+#             db.session.commit()
 
-            chat_room_user1 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user1.id)
-            chat_room_user2 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user2.id)
+#             chat_room_user1 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user1.id)
+#             chat_room_user2 = ChatRoomUser(chat_room_id=chat_room.id, user_id=user2.id)
 
-            db.session.add_all([chat_room_user1, chat_room_user2])
-            db.session.commit()
+#             db.session.add_all([chat_room_user1, chat_room_user2])
+#             db.session.commit()
 
-            chat_room_ids.append(chat_room.id)
+#             chat_room_ids.append(chat_room.id)
 
-    return chat_room_ids
+#     return chat_room_ids
 
-def add_messages(chat_room_ids):
-    conversations = [conversation1, conversation2, conversation3]
+# def add_messages(chat_room_ids):
+#     conversations = [conversation1, conversation2, conversation3]
 
-    for chat_room_id, conversation in zip(chat_room_ids, conversations):
-        for i, message_text in enumerate(conversation):
-            message = Message(
-                content=message_text,
-                chat_room_id=chat_room_id,
-                sender_id=1 if i % 2 == 0 else 2
-            )
-            db.session.add(message)
-    db.session.commit()
+#     for chat_room_id, conversation in zip(chat_room_ids, conversations):
+#         for i, message_text in enumerate(conversation):
+#             message = Message(
+#                 content=message_text,
+#                 chat_room_id=chat_room_id,
+#                 sender_id=1 if i % 2 == 0 else 2
+#             )
+#             db.session.add(message)
+#     db.session.commit()
 
 
 if __name__ == '__main__':
@@ -200,5 +200,5 @@ if __name__ == '__main__':
         db.create_all()
         create_user_types()
         make_users()
-        chat_room_ids = create_chat_rooms_and_matches()
-        add_messages(chat_room_ids)
+        # chat_room_ids = create_chat_rooms_and_matches()
+        # add_messages(chat_room_ids)
