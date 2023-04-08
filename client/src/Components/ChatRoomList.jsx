@@ -19,20 +19,21 @@ const ChatRoomList = ({
 		updatedRecipients
 	);
 
+	console.log("\n\n\n\n\n\n\n\n ", chatRoomObjects);
+
 	return chatRoomObjects.length > 0 ? (
 		<ul
 			className="
 				divide-gray-200 w-60 cursor-pointer
 				lg:w-80
 				xl:w-96">
-			{chatRoomObjects.length > 0 &&
-				chatRoomObjects.map((chatRoomObject, key) => (
-					<ChatRoom
-						key={key}
-						chatRoomObject={chatRoomObject}
-						setDisplayedMessages={setDisplayedMessages}
-					/>
-				))}
+			{chatRoomObjects.map((chatRoomObject, key) => (
+				<ChatRoom
+					key={key}
+					chatRoomObject={chatRoomObject}
+					setDisplayedMessages={setDisplayedMessages}
+				/>
+			))}
 		</ul>
 	) : (
 		<div

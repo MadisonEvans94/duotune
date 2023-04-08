@@ -17,6 +17,7 @@ const Explore = () => {
 	const [userPool, setUserPool] = useState(null);
 	const { user, setUser, fetchUser } = useContext(UserContext);
 
+	// TODO: This will need to change eventually
 	useEffect(() => {
 		fetch("/users")
 			.then((res) => res.json())
@@ -47,7 +48,9 @@ const Explore = () => {
 		})
 			.then((res) => res.json())
 			.then(
+				// is it a match? if so, refetch the user from db
 				(data) => data[0] === "match" && fetchUser(user.id, setUser)
+
 				// console.log(
 				// 	`\n\nEXPLORE COMPONENT: Swipe created: by user ${user.id}\nswipe objects: `,
 				// 	data
@@ -99,15 +102,16 @@ const Explore = () => {
 					{userPool && collaboratorCount < userPool.length && (
 						<CollaboratorCard
 							key={userPool[collaboratorCount].id}
-							image={userPool[collaboratorCount].profile_picture_url}
-							collaboratorId={userPool[collaboratorCount].id}
 							audioFile="https://res.cloudinary.com/degnyqukw/video/upload/v1680658098/carti_thing_ih9wft.mp3"
+							userPool={userPool}
 							artistName={userPool[collaboratorCount].artist_name}
 							location={userPool[collaboratorCount].location}
-							genre="genre"
-							exitDirection={exitDirection}
+							image={userPool[collaboratorCount].profile_picture_url}
+							collaboratorId={userPool[collaboratorCount].id}
 							artistType={userPool[collaboratorCount].user_type.name}
 							blurb={userPool[collaboratorCount].bio}
+							genre="genre"
+							exitDirection={exitDirection}
 						/>
 					)}
 				</AnimatePresence>

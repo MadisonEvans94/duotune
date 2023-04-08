@@ -5,12 +5,16 @@ import UserContext from "./Contexts/UserContext";
 const ChatRoom = ({ chatRoomObject, setDisplayedMessages }) => {
 	const [otherUser, setOtherUser] = useState(null);
 	const { user } = useContext(UserContext);
+
+	console.log("CHATROOM COMPONENT: Chat room object: ", chatRoomObject);
 	function populateChatRoom() {
-		const messageContent = chatRoomObject.messages;
+		console.log(chatRoomObject);
 		setDisplayedMessages(chatRoomObject.messages);
 	}
 
 	useEffect(() => {
+		if (!chatRoomObject.chat_room_users) return;
+
 		const usersInChat = chatRoomObject.chat_room_users;
 
 		const otherChatRoomUser = usersInChat.find(

@@ -7,7 +7,7 @@ from random import choice
 
 fake = Faker()
 
-USER_QTY = 6
+USER_QTY = 3
 # Conversation 1
 conversation1 = [
   "Hey, have you worked on any music recently?",

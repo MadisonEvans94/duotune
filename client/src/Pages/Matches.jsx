@@ -23,10 +23,16 @@ export default function Matches() {
 			if (user.chat_rooms.length > 0) {
 				Promise.all(
 					user.chat_rooms.map((instance) =>
-						fetch(`/chat_rooms/${instance.id}`).then((res) => res.json())
+						fetch(`/chat_rooms/${instance.chat_room_id}`).then((res) =>
+							res.json()
+						)
 					)
 				)
 					.then((chatRoomsData) => {
+						console.log(
+							"********************************CHATROOMSDATA",
+							chatRoomsData
+						);
 						setChatRoomObjects(chatRoomsData);
 					})
 					.catch((error) => console.error("Error fetching chat rooms:", error));
@@ -54,7 +60,7 @@ export default function Matches() {
 
 	useEffect(() => {
 		fetchChatRoomObjects();
-	}, [user.chat_rooms]);
+	}, []);
 
 	return (
 		<div className="h-full">

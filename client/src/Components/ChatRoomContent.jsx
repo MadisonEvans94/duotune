@@ -15,22 +15,6 @@ const ChatRoomContent = ({ displayedMessages, setDisplayedMessages }) => {
 		setFormMessage(e.target.value);
 	};
 
-	// def post(self):
-	//     data = request.get_json()
-	//     content = data.get("content")
-	//     chat_room_id = data.get("chat_room_id")
-	//     sender_id = data.get("sender_id")
-
-	//     new_message = Message(content=content, sender_id=sender_id, chat_room_id=chat_room_id)
-	//     db.session.add(new_message)
-	//     db.session.commit()
-
-	//     response = make_response(
-	//         jsonify(new_message.to_dict()),
-	//         201
-	//     )
-	//     return response
-
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const message = {
