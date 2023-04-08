@@ -10,7 +10,7 @@ export default function Matches() {
 	const { user, chatRoomObjects, setChatRoomObjects } = useContext(UserContext);
 	const [recipients, setRecipients] = useState([]);
 	const [chatRoomUserInstances, setChatRoomUserInstances] = useState([]);
-	const [selectedChatRoom, setSelectedChatRoom] = useState(null);
+	const [selectedChatRoomID, setSelectedChatRoomID] = useState(null);
 	const fetchChatRoomObjects = async () => {
 		console.log(
 			"CURRENT USER STATE: ",
@@ -59,8 +59,8 @@ export default function Matches() {
 				{chatRoomObjects && (
 					<div className="border-r border-t">
 						<ChatRoomList
-							selectedChatRoom={selectedChatRoom}
-							setSelectedChatRoom={setSelectedChatRoom}
+							selectedChatRoomID={selectedChatRoomID}
+							setSelectedChatRoomID={setSelectedChatRoomID}
 							setDisplayedMessages={setDisplayedMessages}
 							chatRoomObjects={chatRoomObjects}
 							recipients={recipients}
@@ -68,8 +68,8 @@ export default function Matches() {
 					</div>
 				)}
 				<ChatRoomContent
-					selectedChatRoom={selectedChatRoom}
-					setSelectedChatRoom={setSelectedChatRoom}
+					selectedChatRoomID={selectedChatRoomID}
+					setSelectedChatRoomID={setSelectedChatRoomID}
 					chatRoomObject={chatRoomObjects[0]}
 					displayedMessages={displayedMessages}
 					setDisplayedMessages={setDisplayedMessages}

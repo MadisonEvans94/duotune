@@ -7,10 +7,10 @@ import UserContext from "./Contexts/UserContext";
 const ChatRoomContent = ({
 	displayedMessages,
 	setDisplayedMessages,
-	selectedChatRoom,
-	setSelectedChatRoom,
+	selectedChatRoomID,
+	setSelectedChatRoomID,
 }) => {
-	console.log("SELECTED CHAT ROOM ------->>> : ", selectedChatRoom);
+	console.log("SELECTED CHAT ROOM ------->>> : ", selectedChatRoomID);
 	const [formMessage, setFormMessage] = useState("");
 	const { user } = useContext(UserContext);
 	const handleInputChange = (e) => {
@@ -21,7 +21,7 @@ const ChatRoomContent = ({
 		e.preventDefault();
 		const message = {
 			content: formMessage,
-			chat_room_id: selectedChatRoom.id,
+			chat_room_id: selectedChatRoomID,
 			sender_id: user.id,
 		};
 

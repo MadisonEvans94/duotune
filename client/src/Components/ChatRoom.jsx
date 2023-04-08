@@ -5,7 +5,7 @@ import UserContext from "./Contexts/UserContext";
 const ChatRoom = ({
 	chatRoomObject,
 	setDisplayedMessages,
-	setSelectedChatRoom,
+	setSelectedChatRoomID,
 }) => {
 	const [otherUser, setOtherUser] = useState(null);
 	const { user } = useContext(UserContext);
@@ -13,7 +13,7 @@ const ChatRoom = ({
 	// console.log("CHATROOM COMPONENT: Chat room object: ", chatRoomObject);
 	function populateChatRoom() {
 		console.log("CHATROOM COMPONENT: SET SELECTED CHATROOM: ", chatRoomObject);
-		setSelectedChatRoom(chatRoomObject);
+		setSelectedChatRoomID(chatRoomObject.id);
 		console.log(chatRoomObject);
 		setDisplayedMessages(chatRoomObject.messages);
 	}

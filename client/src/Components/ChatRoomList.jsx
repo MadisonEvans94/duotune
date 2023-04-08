@@ -1,11 +1,11 @@
 import React from "react";
 import UserContext from "./Contexts/UserContext";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 
 import ChatRoom from "./ChatRoom";
 const ChatRoomList = ({
-	selectedChatRoom,
-	setSelectedChatRoom,
+	selectedChatRoomID,
+	setSelectedChatRoomID,
 	setDisplayedMessages,
 	recipients,
 	chatRoomObjects,
@@ -29,8 +29,8 @@ const ChatRoomList = ({
 				xl:w-96">
 			{chatRoomObjects.map((chatRoomObject, key) => (
 				<ChatRoom
-					setSelectedChatRoom={setSelectedChatRoom}
-					selectedChatRoom={selectedChatRoom}
+					setSelectedChatRoomID={setSelectedChatRoomID}
+					selectedChatRoomID={selectedChatRoomID}
 					key={key}
 					chatRoomObject={chatRoomObject}
 					setDisplayedMessages={setDisplayedMessages}
