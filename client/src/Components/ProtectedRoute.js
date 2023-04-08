@@ -5,7 +5,6 @@ import Navigation from "../Pages/Navigation";
 import { useContext } from "react";
 const ProtectedRoute = ({ loading }) => {
 	const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
-	console.log(isLoggedIn);
 	if (loading) {
 		return (
 			<>

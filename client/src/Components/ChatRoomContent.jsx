@@ -4,34 +4,26 @@ import colors from "../utils/colorPalette";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
-const ChatRoomContent = ({ messages, setMessages }) => {
+const ChatRoomContent = ({
+	displayedMessages,
+	setDisplayedMessages,
+	selectedChatRoomID,
+	setSelectedChatRoomID,
+}) => {
+	console.log("SELECTED CHAT ROOM ------->>> : ", selectedChatRoomID);
 	const [formMessage, setFormMessage] = useState("");
 	const { user } = useContext(UserContext);
 	const handleInputChange = (e) => {
 		setFormMessage(e.target.value);
 	};
 
-	// def post(self):
-	//     data = request.get_json()
-	//     content = data.get("content")
-	//     chat_room_id = data.get("chat_room_id")
-	//     sender_id = data.get("sender_id")
-
-	//     new_message = Message(content=content, sender_id=sender_id, chat_room_id=chat_room_id)
-	//     db.session.add(new_message)
-	//     db.session.commit()
-
-	//     response = make_response(
-	//         jsonify(new_message.to_dict()),
-	//         201
-	//     )
-	//     return response
+	// [ ] need to also add it to the global place where we're keeping chatrooms so that when you click off it's still there (client side )
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const message = {
 			content: formMessage,
-			chat_room_id: 1,
+			chat_room_id: selectedChatRoomID,
 			sender_id: user.id,
 		};
 
@@ -45,35 +37,38 @@ const ChatRoomContent = ({ messages, setMessages }) => {
 			});
 
 			if (!response.ok) {
-				throw new Error("Error sending message.");
+				throw new Error("\n\nCHATROOM COMPONENT: Error sending message.");
 			}
 
 			const newMessage = await response.json();
+			setDisplayedMessages((prevMessages) =>
+				prevMessages ? [...prevMessages, newMessage] : [newMessage]
+			);
 
-			setMessages((prevMessages) => [...prevMessages, newMessage]);
 			setFormMessage("");
 		} catch (error) {
-			console.error("Error:", error);
+			console.error("\n\nCHATROOMCONTENT COMPONENT: Error:", error);
 		}
 	};
+
 	return (
 		<div className="w-full pt-4 h-full flex flex-col border-t">
-			{messages ? (
+			{displayedMessages ? (
 				<div className="px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto">
-					{messages.map((message, index) => {
-						const isUser = message.sender_id === 1;
+					{displayedMessages.map((message, index) => {
+						const isUser = message.sender_id === user.id;
 						return (
 							<div
 								key={index}
-								className={`flex ${
+								className={`flex flex-row ${
 									isUser ? "justify-end" : "justify-start"
 								} mb-4`}>
-								<div
+								<p
 									className={`px-4 py-2 rounded-lg ${
 										isUser ? "bg-accent text-info" : "bg-gray-200 text-dark"
 									}`}>
 									{message.content}
-								</div>
+								</p>
 							</div>
 						);
 					})}

@@ -2,7 +2,7 @@ from flask import Flask, make_response, request, abort, jsonify, session, redire
 from flask_migrate import Migrate
 from flask_cors import CORS
 from flask_restful import Api, Resource
-from models import db, User, UserType, ChatRoom, Message
+from models import db, User, UserType, ChatRoom, Message, Swipe, ChatRoomUser
 from werkzeug.exceptions import NotFound, Unauthorized
 from flask_bcrypt import Bcrypt
 from functools import wraps
@@ -184,7 +184,7 @@ class ChatRoomsbyID(Resource):
 
         chat_room = ChatRoom.query.filter_by(id=id).first()
         if not chat_room:
-            abort(404, 'User not found!')
+            return make_response(jsonify("chat_room not found"), 404)
 
         chat_room_dict = chat_room.to_dict()
 
@@ -244,6 +244,47 @@ class MessagesbyID(Resource):
 
         return response
     
+class Swipes(Resource):
+    def post(self):
+        data = request.get_json()
+        swiper_id = data.get('swiper_id')
+        swiped_id = data.get('swiped_id')
+        liked = data.get('liked')
+
+        # Check if a swipe already exists between swiper and swiped
+        existing_swipe = Swipe.query.filter_by(swiper_id=swiper_id, swiped_id=swiped_id).first()
+
+        # If a swipe between swiper and swiped already exists, return an error message
+        if existing_swipe:
+            return {'message': 'Swipe already exists'}, 400
+
+        # Create a new Swipe object with the given swiper_id, swiped_id, and liked status
+        swipe = Swipe(swiper_id=swiper_id, swiped_id=swiped_id, liked=liked)
+        db.session.add(swipe)
+        db.session.commit()
+
+        # Check for a mutual match (i.e., both users have swiped right on each other)
+        mutual_swipe = Swipe.query.filter_by(swiper_id=swiped_id, swiped_id=swiper_id, liked=True).first()
+
+        # If the current swipe is a "like" and there is a mutual match, create a new chat room for the users
+        if liked and mutual_swipe:
+            chat_room = ChatRoom()
+            db.session.add(chat_room)
+            db.session.commit()
+
+            # Add both users to the new chat room
+            chat_room_user1 = ChatRoomUser(user_id=swiper_id, chat_room_id=chat_room.id)
+            chat_room_user2 = ChatRoomUser(user_id=swiped_id, chat_room_id=chat_room.id)
+            db.session.add_all([chat_room_user1, chat_room_user2])
+            db.session.commit()
+
+            # Return a success message indicating that a match has been found and a chat room has been created
+            # return {'message': f'Match found and chat room created. Chatroom id: {chat_room.id} Matched Users: {swiper_id} and {swiped_id}'}, 201
+            return make_response(jsonify(["match",chat_room.to_dict()]),
+            201)
+        # If there is no mutual match, return a success message indicating that the swipe has been recorded
+        return {'message': f'Swipe recorded. User {swiper_id} swiped on user {swiped_id}'}, 201
+    
 api.add_resource(Home, '/')
 api.add_resource(UsersbyID, '/users/<int:id>')
 api.add_resource(Users, '/users/')
@@ -253,7 +294,7 @@ api.add_resource(ChatRooms, '/chat_rooms')
 api.add_resource(ChatRoomsbyID, '/chat_rooms/<int:id>')
 api.add_resource(Messages, '/messages')
 api.add_resource(MessagesbyID, '/messages/<int:id>')
-
+api.add_resource(Swipes, '/swipes')
 
 # 14.✅ Create a Signup route
 class Signup(Resource):
@@ -265,7 +306,7 @@ class Signup(Resource):
         db.session.add(new_user)
         db.session.commit()
         response = make_response(
-            new_user.to_dict(),
+            jsonify(new_user.to_dict()),
             201
         )
         return response

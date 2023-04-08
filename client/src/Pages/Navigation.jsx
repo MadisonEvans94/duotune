@@ -13,9 +13,8 @@ function classNames(...classes) {
 }
 
 const Navigation = () => {
-	const { user } = useContext(UserContext);
+	const { user, setUser } = useContext(UserContext);
 	const { setIsLoggedIn } = useContext(AuthContext);
-	console.log("NAVIGATION COMPONENT: ", user);
 
 	const navigate = useNavigate();
 
@@ -26,12 +25,13 @@ const Navigation = () => {
 			.then((response) => {
 				if (response.ok) {
 					setIsLoggedIn(false);
+					setUser(null);
 					response.json().then((response) => navigate("/signin"));
 				} else {
-					throw new Error("logout issue detected");
+					throw new Error("\n\nNAVIGATION COMPONENT: logout issue detected");
 				}
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => console.log("\n\nNAVIGATION COMPONENT: ", error));
 	}
 
 	return (

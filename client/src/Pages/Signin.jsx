@@ -27,19 +27,18 @@ const Signin = () => {
 		})
 			.then((response) => {
 				if (response.ok) {
-					console.log("SIGNIN COMPONENT: ", response);
 					return response.json();
 				} else {
-					throw new Error("SIGNIN COMPONENT: Authentication failed");
+					throw new Error("\n\nSIGNIN COMPONENT: Authentication failed");
 				}
 			})
 			.then((user) => {
-				console.log("SIGNIN COMPONENT: ", user);
 				setUser(user);
 				setIsLoggedIn(true); // Update the loggedIn state in the AuthProvider
+				console.log(`\n\nSIGNIN COMPONENT: Login was successful...`, user);
 				navigate("/explore");
 			})
-			.catch((error) => console.log(error));
+			.catch((error) => console.log(`\n\nSIGNIN COMPONENT: `, error));
 	}
 
 	return (
