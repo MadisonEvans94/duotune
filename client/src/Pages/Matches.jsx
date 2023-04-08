@@ -6,46 +6,54 @@ import ChatRoomContent from "../Components/ChatRoomContent";
 import MatchCard from "../Components/MatchCard";
 
 export default function Matches() {
-	const [messages, setMessages] = useState(null);
+	const [displayedMessages, setDisplayedMessages] = useState(null);
 	const [chatRooms, setChatRooms] = useState(null);
 	const { user } = useContext(UserContext);
 	const [recipients, setRecipients] = useState(null);
+	const [chatRoomUserInstances, setChatRoomUserInstances] = useState([]);
 
-	const fetchData = async () => {
+	const fetchChatRoomObjects = async () => {
+		console.log("CURRENT USER STATE: ", user);
 		try {
-			let fetchedChatRooms = [];
-			for (const chatroom of user.chat_rooms) {
-				const chatroomResponse = await fetch(`/chat_rooms/${chatroom.id}`);
-				const chatroomInstance = await chatroomResponse.json();
-
-				console.log("MATCHES COMPONENT: ...fetching chatrooms...");
-				fetchedChatRooms.push(chatroomInstance);
+			setChatRoomUserInstances(user.chat_rooms);
+			if (user.chat_rooms.length > 0) {
+				Promise.all(
+					user.chat_rooms.map((instance) =>
+						fetch(`/chat_rooms/${instance.id}`).then((res) => res.json())
+					)
+				)
+					.then((chatRoomsData) => {
+						console.log("chatRoomsData", chatRoomsData);
+						setChatRooms(chatRoomsData);
+					})
+					.catch((error) => console.error("Error fetching chat rooms:", error));
+			} else {
+				setChatRooms([]);
 			}
 
-			setChatRooms(fetchedChatRooms);
-			// TODO: change it so that instead of fetchedChatRooms[0],
-			//TODO: it is instead fetchedChatRooms[i] where i is the index of whatever chatRoom object in the list that you click on
-			setMessages(fetchedChatRooms[0].messages);
+			console.log(
+				`\n\nMATCHES COMPONENT: user ${user.id}'s ChatRoomUser instances: `,
+				user.chat_rooms
+			);
 		} catch (error) {
-			console.error("MATCHES COMPONENT: Error fetching data:", error);
+			console.error("\n\nMATCHES COMPONENT: Error fetching data:", error);
 		}
 	};
 
 	useEffect(
 		() =>
 			console.log(
-				`\nMATCHES COMPONENT: chat_room objects for user ${user.id} "fetchedChatRooms" array: \n`,
+				`\n\nMATCHES COMPONENT: chat_room objects for user ${user.id} ("chatRooms" array): `,
 				chatRooms
 			),
-		[]
+		[chatRooms, user.id]
 	);
 
 	useEffect(() => {
-		const chatroomIdList = user.chat_rooms.map((chatroom) => chatroom.id);
-		setRecipients(chatroomIdList);
+		setRecipients([]);
 
-		fetchData();
-	}, [user.chat_rooms, user.id]);
+		fetchChatRoomObjects();
+	}, [user.chat_rooms]);
 
 	return (
 		<div className="h-full">
@@ -57,13 +65,16 @@ export default function Matches() {
 				{chatRooms && (
 					<div className="border-r border-t">
 						<ChatRoomList
-							setMessages={setMessages}
+							setDisplayedMessages={setDisplayedMessages}
 							chatRooms={chatRooms}
 							recipients={recipients}
 						/>
 					</div>
 				)}
-				<ChatRoomContent messages={messages} setMessages={setMessages} />
+				<ChatRoomContent
+					displayedMessages={displayedMessages}
+					setDisplayedMessages={setDisplayedMessages}
+				/>
 			</div>
 		</div>
 	);

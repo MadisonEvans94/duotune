@@ -15,7 +15,7 @@ const Explore = () => {
 	const [exitDirection, setExitDirection] = useState(0);
 	const [directionChanged, setDirectionChanged] = useState(false);
 	const [userPool, setUserPool] = useState(null);
-	const { user } = useContext(UserContext);
+	const { user, setUser, fetchUser } = useContext(UserContext);
 
 	useEffect(() => {
 		fetch("/users")
@@ -46,10 +46,14 @@ const Explore = () => {
 			body: JSON.stringify(swipeData),
 		})
 			.then((res) => res.json())
-			.then((data) =>
-				console.log(`\nSwipe created: by user ${user.id}\n`, data)
+			.then(
+				(data) => data[0] === "match" && fetchUser(user.id, setUser)
+				// console.log(
+				// 	`\n\nEXPLORE COMPONENT: Swipe created: by user ${user.id}\nswipe objects: `,
+				// 	data
+				// )
 			)
-			.catch((error) => console.log("Error:", error));
+			.catch((error) => console.log("\n\n EXPLORE COMPONENT: Error:", error));
 		setExitDirection(1);
 		setDirectionChanged(true);
 	}

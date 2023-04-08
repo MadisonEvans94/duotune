@@ -15,6 +15,11 @@ function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [user, setUser] = useState(null);
+	function fetchUser(id, callback) {
+		fetch(`/users/${id}`)
+			.then((res) => res.json())
+			.then((user) => callback(user));
+	}
 	useEffect(() => {
 		fetch("/authorized", {
 			credentials: "include",
@@ -40,7 +45,8 @@ function App() {
 
 	return (
 		<div className="w-screen h-screen absolute bg-primary font-paragraph">
-			<UserContext.Provider value={{ userID, setUserID, user, setUser }}>
+			<UserContext.Provider
+				value={{ userID, setUserID, user, setUser, fetchUser }}>
 				<AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
 					<Router>
 						<Routes>

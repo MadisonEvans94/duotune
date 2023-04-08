@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 const ChatRoom = ({
 	chatRoom,
-	setMessages,
+	setDisplayedMessages,
 	recipient,
 	chatRoomMessages,
 	setChatRoomMessages,
@@ -11,22 +11,19 @@ const ChatRoom = ({
 	const [otherUser, setOtherUser] = useState(null);
 
 	function populateChatRoom() {
-		fetch(`/chat_rooms/${chatRoom.id}`)
-			.then((res) => res.json())
-			.then((chatRoomInstance) => {
-				setChatRoomMessages(chatRoomMessages);
-				setMessages(chatRoomInstance.messages);
-			});
+		setDisplayedMessages(
+			chatRoom.messages.map((messageObject) => messageObject.content)
+		);
 	}
 
 	useEffect(() => {
 		// [ ] needs to be changed to the id of the user on the other side of this chat room
-		fetch(`/users/${5}`)
+		fetch(`/users/${recipient}`)
 			.then((res) => res.json())
 			.then((user) => {
 				setOtherUser(user);
 			})
-			.catch((error) => console.log("CHATROOM COMPONENT: ", error));
+			.catch((error) => console.log("\n\nCHATROOM COMPONENT: ", error));
 	}, [recipient]);
 
 	return (

@@ -5,7 +5,10 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
 const ChatRoomContent = ({ messages, setMessages }) => {
-	console.log("messages", messages);
+	console.log(
+		`\n\nCHATROOMCONTENT COMPONENT: 'messages': ${messages}`,
+		messages
+	);
 	const [formMessage, setFormMessage] = useState("");
 	const { user } = useContext(UserContext);
 	const handleInputChange = (e) => {
@@ -46,7 +49,7 @@ const ChatRoomContent = ({ messages, setMessages }) => {
 			});
 
 			if (!response.ok) {
-				throw new Error("Error sending message.");
+				throw new Error("\n\nCHATROOM COMPONENT: Error sending message.");
 			}
 
 			const newMessage = await response.json();
@@ -56,7 +59,7 @@ const ChatRoomContent = ({ messages, setMessages }) => {
 			);
 			setFormMessage("");
 		} catch (error) {
-			console.error("Error:", error);
+			console.error("\n\nCHATROOMCONTENT COMPONENT: Error:", error);
 		}
 	};
 	return (
