@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect, useState, useContext } from "react";
+import { useContext } from "react";
 import UserContext from "../Components/Contexts/UserContext";
 import { motion } from "framer-motion";
 import matches from "../seed/matches.json";

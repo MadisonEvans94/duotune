@@ -15,7 +15,6 @@ function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [user, setUser] = useState(null);
-	console.log("APP COMPONENT: isLoggedIn ...", isLoggedIn);
 	useEffect(() => {
 		fetch("/authorized", {
 			credentials: "include",

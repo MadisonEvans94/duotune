@@ -15,7 +15,6 @@ function classNames(...classes) {
 const Navigation = () => {
 	const { user, setUser } = useContext(UserContext);
 	const { setIsLoggedIn } = useContext(AuthContext);
-	console.log("NAVIGATION COMPONENT: ", user);
 
 	const navigate = useNavigate();
 

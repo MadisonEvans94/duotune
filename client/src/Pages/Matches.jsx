@@ -18,25 +18,32 @@ export default function Matches() {
 				const chatroomResponse = await fetch(`/chat_rooms/${chatroom.id}`);
 				const chatroomInstance = await chatroomResponse.json();
 
+				console.log("MATCHES COMPONENT: ...fetching chatrooms...");
 				fetchedChatRooms.push(chatroomInstance);
 			}
 
-			console.log("FETCHED CHATROOMS: ", fetchedChatRooms);
 			setChatRooms(fetchedChatRooms);
 			// TODO: change it so that instead of fetchedChatRooms[0],
 			//TODO: it is instead fetchedChatRooms[i] where i is the index of whatever chatRoom object in the list that you click on
 			setMessages(fetchedChatRooms[0].messages);
 		} catch (error) {
-			console.error("Error fetching data:", error);
+			console.error("MATCHES COMPONENT: Error fetching data:", error);
 		}
 	};
 
-	useEffect(() => console.log("CHAT ROOMS************", chatRooms), []);
+	useEffect(
+		() =>
+			console.log(
+				`\nMATCHES COMPONENT: chat_room objects for user ${user.id} "fetchedChatRooms" array: \n`,
+				chatRooms
+			),
+		[]
+	);
 
 	useEffect(() => {
 		const chatroomIdList = user.chat_rooms.map((chatroom) => chatroom.id);
 		setRecipients(chatroomIdList);
-		console.log("chttttidlist:", chatroomIdList);
+
 		fetchData();
 	}, [user.chat_rooms, user.id]);
 

@@ -7,7 +7,9 @@ const ChatRoomList = ({ setMessages, recipients, chatRooms }) => {
 	const { user } = useContext(UserContext);
 	const [chatRoomMessages, setChatRoomMessages] = useState(null);
 	const updatedRecipients = recipients.filter((value) => value !== user.id);
-	console.log(chatRooms);
+	console.log(
+		`\n\nCHATROOM COMPONENT: \n'chatRooms': ${chatRooms} \n'recipients': ${recipients}`
+	);
 	return chatRooms.length > 0 ? (
 		<ul
 			className="

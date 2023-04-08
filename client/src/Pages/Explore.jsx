@@ -46,7 +46,9 @@ const Explore = () => {
 			body: JSON.stringify(swipeData),
 		})
 			.then((res) => res.json())
-			.then((data) => console.log("Swipe created:", data))
+			.then((data) =>
+				console.log(`\nSwipe created: by user ${user.id}\n`, data)
+			)
 			.catch((error) => console.log("Error:", error));
 		setExitDirection(1);
 		setDirectionChanged(true);
