@@ -53,13 +53,13 @@ const Profile = () => {
 						<h2 className="text-2xl my-4 font-display text-center text-accent">
 							About Me
 						</h2>
-						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg bg-darkGray">
+						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
 							{user.bio}
 						</div>
 						<h2 className="text-2xl my-4 font-display text-center text-accent">
 							My Sound
 						</h2>
-						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg bg-darkGray">
+						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
 							data.song_sample
 						</div>
 						<div className="flex flex-row justify-center text-accent items-center my-4">
@@ -68,7 +68,7 @@ const Profile = () => {
 							</h2>
 							<Connect className="mx-4" size="1.5em" />
 						</div>
-						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg bg-darkGray">
+						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
 							<div className="w-full flex flex-row justify-around">
 								{data.social_links.map((link, key) => {
 									return <p key={key}>{link}</p>;
