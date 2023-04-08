@@ -148,7 +148,7 @@ class Message(db.Model, SerializerMixin):
     user = db.relationship('User', foreign_keys=[sender_id])
     
     # serialize rules 
-    serialize_only = ('id', 'content', 'chat_room_id', 'sender_id', 'created_at', 'user')
+    serialize_only = ('id', 'content', 'chat_room_id', 'sender_id', 'created_at')
 
 
 

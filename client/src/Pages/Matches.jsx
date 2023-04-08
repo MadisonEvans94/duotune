@@ -21,6 +21,8 @@ export default function Matches() {
 			}
 
 			setChatRooms(fetchedChatRooms);
+			// TODO: change it so that instead of fetchedChatRooms[0],
+			//TODO: it is instead fetchedChatRooms[i] where i is the index of whatever chatRoom object in the list that you click on
 			setMessages(fetchedChatRooms[0].messages);
 		} catch (error) {
 			console.error("Error fetching data:", error);
