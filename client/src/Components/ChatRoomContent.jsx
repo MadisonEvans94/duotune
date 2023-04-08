@@ -4,11 +4,13 @@ import colors from "../utils/colorPalette";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
-const ChatRoomContent = ({ displayedMessages, setDisplayedMessages }) => {
-	console.log(
-		`\n\nCHATROOMCONTENT COMPONENT: 'messages': ${displayedMessages}`,
-		displayedMessages
-	);
+const ChatRoomContent = ({
+	displayedMessages,
+	setDisplayedMessages,
+	selectedChatRoom,
+	setSelectedChatRoom,
+}) => {
+	console.log("SELECTED CHAT ROOM ------->>> : ", selectedChatRoom);
 	const [formMessage, setFormMessage] = useState("");
 	const { user } = useContext(UserContext);
 	const handleInputChange = (e) => {
@@ -19,7 +21,7 @@ const ChatRoomContent = ({ displayedMessages, setDisplayedMessages }) => {
 		e.preventDefault();
 		const message = {
 			content: formMessage,
-			chat_room_id: 1,
+			chat_room_id: selectedChatRoom.id,
 			sender_id: user.id,
 		};
 
@@ -37,17 +39,16 @@ const ChatRoomContent = ({ displayedMessages, setDisplayedMessages }) => {
 			}
 
 			const newMessage = await response.json();
-			setDisplayedMessages.length > 0
-				? setDisplayedMessages((prevMessages) =>
-						prevMessages ? [...prevMessages, newMessage] : [newMessage]
-				  )
-				: setDisplayedMessages(newMessage);
+			setDisplayedMessages((prevMessages) =>
+				prevMessages ? [...prevMessages, newMessage] : [newMessage]
+			);
+
 			setFormMessage("");
 		} catch (error) {
 			console.error("\n\nCHATROOMCONTENT COMPONENT: Error:", error);
 		}
 	};
-	console.log("\n\n\n**TESTING**\n\n\n", displayedMessages);
+
 	return (
 		<div className="w-full pt-4 h-full flex flex-col border-t">
 			{displayedMessages ? (

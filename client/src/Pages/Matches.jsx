@@ -10,7 +10,7 @@ export default function Matches() {
 	const { user, chatRoomObjects, setChatRoomObjects } = useContext(UserContext);
 	const [recipients, setRecipients] = useState([]);
 	const [chatRoomUserInstances, setChatRoomUserInstances] = useState([]);
-
+	const [selectedChatRoom, setSelectedChatRoom] = useState(null);
 	const fetchChatRoomObjects = async () => {
 		console.log(
 			"CURRENT USER STATE: ",
@@ -29,34 +29,21 @@ export default function Matches() {
 					)
 				)
 					.then((chatRoomsData) => {
-						console.log(
-							"********************************CHATROOMSDATA",
-							chatRoomsData
-						);
 						setChatRoomObjects(chatRoomsData);
 					})
-					.catch((error) => console.error("Error fetching chat rooms:", error));
+					.catch((error) =>
+						console.error(
+							"MATCHES COMPONENT: Error fetching chat rooms:",
+							error
+						)
+					);
 			} else {
 				setChatRoomObjects([]);
 			}
-
-			console.log(
-				`\n\nMATCHES COMPONENT: user ${user.id}'s ChatRoomUser instances: `,
-				user.chat_rooms
-			);
 		} catch (error) {
 			console.error("\n\nMATCHES COMPONENT: Error fetching data:", error);
 		}
 	};
-
-	useEffect(
-		() =>
-			console.log(
-				`\n\nMATCHES COMPONENT: chat_room objects for user ${user.id} ("chatRooms" array): `,
-				chatRoomObjects
-			),
-		[chatRoomObjects, user.id]
-	);
 
 	useEffect(() => {
 		fetchChatRoomObjects();
@@ -72,6 +59,8 @@ export default function Matches() {
 				{chatRoomObjects && (
 					<div className="border-r border-t">
 						<ChatRoomList
+							selectedChatRoom={selectedChatRoom}
+							setSelectedChatRoom={setSelectedChatRoom}
 							setDisplayedMessages={setDisplayedMessages}
 							chatRoomObjects={chatRoomObjects}
 							recipients={recipients}
@@ -79,6 +68,8 @@ export default function Matches() {
 					</div>
 				)}
 				<ChatRoomContent
+					selectedChatRoom={selectedChatRoom}
+					setSelectedChatRoom={setSelectedChatRoom}
 					chatRoomObject={chatRoomObjects[0]}
 					displayedMessages={displayedMessages}
 					setDisplayedMessages={setDisplayedMessages}

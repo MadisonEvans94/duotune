@@ -2,12 +2,18 @@ import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import UserContext from "./Contexts/UserContext";
-const ChatRoom = ({ chatRoomObject, setDisplayedMessages }) => {
+const ChatRoom = ({
+	chatRoomObject,
+	setDisplayedMessages,
+	setSelectedChatRoom,
+}) => {
 	const [otherUser, setOtherUser] = useState(null);
 	const { user } = useContext(UserContext);
 
-	console.log("CHATROOM COMPONENT: Chat room object: ", chatRoomObject);
+	// console.log("CHATROOM COMPONENT: Chat room object: ", chatRoomObject);
 	function populateChatRoom() {
+		console.log("CHATROOM COMPONENT: SET SELECTED CHATROOM: ", chatRoomObject);
+		setSelectedChatRoom(chatRoomObject);
 		console.log(chatRoomObject);
 		setDisplayedMessages(chatRoomObject.messages);
 	}
@@ -24,11 +30,9 @@ const ChatRoom = ({ chatRoomObject, setDisplayedMessages }) => {
 		const fetchOtherUser = async () => {
 			const data = await fetch(`/users/${otherChatRoomUser.user_id}`);
 			const otherUser = await data.json();
-			console.log("OTHER USER \n\n\n", otherUser);
 			setOtherUser(otherUser);
 		};
 		fetchOtherUser().catch(console.error);
-		console.log("CHATROOM COMPONENT: other user", otherUser);
 	}, []);
 
 	return (

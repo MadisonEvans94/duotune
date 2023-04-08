@@ -4,6 +4,8 @@ import { useContext, useState } from "react";
 
 import ChatRoom from "./ChatRoom";
 const ChatRoomList = ({
+	selectedChatRoom,
+	setSelectedChatRoom,
 	setDisplayedMessages,
 	recipients,
 	chatRoomObjects,
@@ -19,8 +21,6 @@ const ChatRoomList = ({
 		updatedRecipients
 	);
 
-	console.log("\n\n\n\n\n\n\n\n ", chatRoomObjects);
-
 	return chatRoomObjects.length > 0 ? (
 		<ul
 			className="
@@ -29,6 +29,8 @@ const ChatRoomList = ({
 				xl:w-96">
 			{chatRoomObjects.map((chatRoomObject, key) => (
 				<ChatRoom
+					setSelectedChatRoom={setSelectedChatRoom}
+					selectedChatRoom={selectedChatRoom}
 					key={key}
 					chatRoomObject={chatRoomObject}
 					setDisplayedMessages={setDisplayedMessages}
