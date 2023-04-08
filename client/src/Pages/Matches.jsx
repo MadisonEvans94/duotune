@@ -7,13 +7,17 @@ import MatchCard from "../Components/MatchCard";
 
 export default function Matches() {
 	const [displayedMessages, setDisplayedMessages] = useState(null);
-	const [chatRooms, setChatRooms] = useState(null);
-	const { user } = useContext(UserContext);
-	const [recipients, setRecipients] = useState(null);
+	const { user, chatRoomObjects, setChatRoomObjects } = useContext(UserContext);
+	const [recipients, setRecipients] = useState([]);
 	const [chatRoomUserInstances, setChatRoomUserInstances] = useState([]);
 
 	const fetchChatRoomObjects = async () => {
-		console.log("CURRENT USER STATE: ", user);
+		console.log(
+			"CURRENT USER STATE: ",
+			user,
+			"\n\nCURRENT USER CHATROOM OBJECTS: ",
+			chatRoomObjects
+		);
 		try {
 			setChatRoomUserInstances(user.chat_rooms);
 			if (user.chat_rooms.length > 0) {
@@ -23,12 +27,11 @@ export default function Matches() {
 					)
 				)
 					.then((chatRoomsData) => {
-						console.log("chatRoomsData", chatRoomsData);
-						setChatRooms(chatRoomsData);
+						setChatRoomObjects(chatRoomsData);
 					})
 					.catch((error) => console.error("Error fetching chat rooms:", error));
 			} else {
-				setChatRooms([]);
+				setChatRoomObjects([]);
 			}
 
 			console.log(
@@ -44,14 +47,12 @@ export default function Matches() {
 		() =>
 			console.log(
 				`\n\nMATCHES COMPONENT: chat_room objects for user ${user.id} ("chatRooms" array): `,
-				chatRooms
+				chatRoomObjects
 			),
-		[chatRooms, user.id]
+		[chatRoomObjects, user.id]
 	);
 
 	useEffect(() => {
-		setRecipients([]);
-
 		fetchChatRoomObjects();
 	}, [user.chat_rooms]);
 
@@ -62,16 +63,17 @@ export default function Matches() {
 					matches.map((match, key) => <MatchCard key={key} match={match} />)}
 			</div>
 			<div className="flex flex-row h-[calc(100%-200px)]">
-				{chatRooms && (
+				{chatRoomObjects && (
 					<div className="border-r border-t">
 						<ChatRoomList
 							setDisplayedMessages={setDisplayedMessages}
-							chatRooms={chatRooms}
+							chatRoomObjects={chatRoomObjects}
 							recipients={recipients}
 						/>
 					</div>
 				)}
 				<ChatRoomContent
+					chatRoomObject={chatRoomObjects[0]}
 					displayedMessages={displayedMessages}
 					setDisplayedMessages={setDisplayedMessages}
 				/>

@@ -3,32 +3,36 @@ import UserContext from "./Contexts/UserContext";
 import { useContext, useState } from "react";
 
 import ChatRoom from "./ChatRoom";
-const ChatRoomList = ({ setDisplayedMessages, recipients, chatRooms }) => {
+const ChatRoomList = ({
+	setDisplayedMessages,
+	recipients,
+	chatRoomObjects,
+}) => {
 	const { user } = useContext(UserContext);
 	const updatedRecipients = recipients.filter(
 		(value) => value.user_id !== user.id
 	);
 	console.log(
-		"\n\nCHATROOMLIST COMPONENT: \n'chatRooms':",
-		chatRooms,
+		"\n\nCHATROOMLIST COMPONENT: \n'chatRoomObjects':",
+		chatRoomObjects,
 		"UpdatedRecipients: \n",
 		updatedRecipients
 	);
 
-	return chatRooms.length > 0 ? (
+	return chatRoomObjects.length > 0 ? (
 		<ul
 			className="
 				divide-gray-200 w-60 cursor-pointer
 				lg:w-80
 				xl:w-96">
-			{updatedRecipients.map((recipient, key) => (
-				<ChatRoom
-					key={key}
-					recipient={recipient}
-					chatRoom={chatRooms[key]}
-					setDisplayedMessages={setDisplayedMessages}
-				/>
-			))}
+			{chatRoomObjects.length > 0 &&
+				chatRoomObjects.map((chatRoomObject, key) => (
+					<ChatRoom
+						key={key}
+						chatRoomObject={chatRoomObject}
+						setDisplayedMessages={setDisplayedMessages}
+					/>
+				))}
 		</ul>
 	) : (
 		<div

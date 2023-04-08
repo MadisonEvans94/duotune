@@ -4,10 +4,10 @@ import colors from "../utils/colorPalette";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
-const ChatRoomContent = ({ messages, setMessages }) => {
+const ChatRoomContent = ({ displayedMessages, setDisplayedMessages }) => {
 	console.log(
-		`\n\nCHATROOMCONTENT COMPONENT: 'messages': ${messages}`,
-		messages
+		`\n\nCHATROOMCONTENT COMPONENT: 'messages': ${displayedMessages}`,
+		displayedMessages
 	);
 	const [formMessage, setFormMessage] = useState("");
 	const { user } = useContext(UserContext);
@@ -53,10 +53,11 @@ const ChatRoomContent = ({ messages, setMessages }) => {
 			}
 
 			const newMessage = await response.json();
-
-			setMessages((prevMessages) =>
-				prevMessages ? [...prevMessages, newMessage] : [newMessage]
-			);
+			setDisplayedMessages.length > 0
+				? setDisplayedMessages((prevMessages) =>
+						prevMessages ? [...prevMessages, newMessage] : [newMessage]
+				  )
+				: setDisplayedMessages(newMessage);
 			setFormMessage("");
 		} catch (error) {
 			console.error("\n\nCHATROOMCONTENT COMPONENT: Error:", error);
@@ -64,9 +65,9 @@ const ChatRoomContent = ({ messages, setMessages }) => {
 	};
 	return (
 		<div className="w-full pt-4 h-full flex flex-col border-t">
-			{messages ? (
+			{displayedMessages ? (
 				<div className="px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto">
-					{messages.map((message, index) => {
+					{displayedMessages.map((message, index) => {
 						const isUser = message.sender_id === user.id;
 						return (
 							<div
