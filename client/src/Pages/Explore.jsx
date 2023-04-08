@@ -13,7 +13,7 @@ import { useContext } from "react";
 import UserContext from "../Components/Contexts/UserContext";
 
 const Explore = () => {
-	const [collaboratorCount, setCollaboratorCount] = useState(1);
+	const [collaboratorCount, setCollaboratorCount] = useState(0);
 	const [exitDirection, setExitDirection] = useState(0);
 	const [directionChanged, setDirectionChanged] = useState(false);
 	const [userPool, setUserPool] = useState(null);

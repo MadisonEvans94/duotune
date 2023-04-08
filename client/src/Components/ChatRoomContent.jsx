@@ -17,6 +17,8 @@ const ChatRoomContent = ({
 		setFormMessage(e.target.value);
 	};
 
+	// [ ] need to also add it to the global place where we're keeping chatrooms so that when you click off it's still there (client side )
+
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		const message = {
