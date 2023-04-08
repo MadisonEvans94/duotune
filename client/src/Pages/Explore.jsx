@@ -1,6 +1,7 @@
 import React from "react";
 import colors from "../utils/colorPalette";
 import { motion } from "framer-motion";
+import { FaHandsHelping as HandShake } from "react-icons/fa";
 import {
 	AiFillCloseCircle as Left,
 	AiFillCheckCircle as Right,
@@ -10,13 +11,14 @@ import { useState, useEffect } from "react";
 import { AnimatePresence } from "framer-motion";
 import { useContext } from "react";
 import UserContext from "../Components/Contexts/UserContext";
+
 const Explore = () => {
 	const [collaboratorCount, setCollaboratorCount] = useState(1);
 	const [exitDirection, setExitDirection] = useState(0);
 	const [directionChanged, setDirectionChanged] = useState(false);
 	const [userPool, setUserPool] = useState(null);
 	const { user, setUser, fetchUser } = useContext(UserContext);
-
+	const [showMatchModal, setShowMatchModal] = useState(false);
 	// TODO: This will need to change eventually
 	useEffect(() => {
 		fetch("/users")
@@ -32,6 +34,13 @@ const Explore = () => {
 			setDirectionChanged(false);
 		}
 	}, [directionChanged]);
+
+	function showModal() {
+		setShowMatchModal(true);
+		setTimeout(() => {
+			setShowMatchModal(false);
+		}, 1500);
+	}
 
 	function rightClick() {
 		const swipeData = {
@@ -50,11 +59,6 @@ const Explore = () => {
 			.then(
 				// is it a match? if so, refetch the user from db
 				(data) => data[0] === "match" && fetchUser(user.id, setUser)
-
-				// console.log(
-				// 	`\n\nEXPLORE COMPONENT: Swipe created: by user ${user.id}\nswipe objects: `,
-				// 	data
-				// )
 			)
 			.catch((error) => console.log("\n\n EXPLORE COMPONENT: Error:", error));
 		setExitDirection(1);
@@ -62,29 +66,45 @@ const Explore = () => {
 	}
 
 	function leftClick() {
-		// const swipeData = {
-		// 	swiper_id: user.id,
-		// 	swiped_id: userPool[collaboratorCount].id,
-		// 	liked: false,
-		// };
-		// fetch("/swipes", {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify(swipeData),
-		// })
-		// 	.then((res) => res.json())
-		// 	.then((data) => console.log("Swipe created:", data))
-		// 	.catch((error) => console.log("Error:", error));
 		setExitDirection(-1);
 		setDirectionChanged(true);
 	}
 
 	return (
 		<div className="">
+			<button onClick={showModal} className="bg-info h-fit w-1/2 absolute">
+				TEST BUTTON
+			</button>
+			<AnimatePresence mode="wait">
+				{showMatchModal && (
+					<motion.div
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1, transition: {} }}
+						exit={{ opacity: 0, transition: { duration: 1 } }}
+						className="
+						z-50 bg-[#000000DD] text-info absolute w-full h-full flex flex-row justify-center items-center">
+						<motion.div
+							initial={{ y: "100vh" }}
+							animate={{ y: 0, transition: { type: "spring", duration: 1 } }}
+							exit={{
+								y: "-100vh",
+								transition: { type: "spring", duration: 2 },
+							}}
+							className="
+							w-fit h-fit text-primary flex flex-col justify-center items-center">
+							<h1
+								className="
+							text-accent font-display text-6xl">
+								You Got a New Match!
+							</h1>
+							<HandShake size="8em" color={colors.accent} />
+						</motion.div>
+					</motion.div>
+				)}
+			</AnimatePresence>
 			<motion.div
-				className="absolute top-1/2 cursor-pointer left-[10%] lg:mx-24"
+				className="
+				absolute top-1/2 cursor-pointer left-[10%] lg:mx-24"
 				initial={{ scale: 1, color: colors.accent }}
 				whileHover={{ scale: 1.1, color: colors.info }}>
 				<Left size="3em" onClick={leftClick} />
