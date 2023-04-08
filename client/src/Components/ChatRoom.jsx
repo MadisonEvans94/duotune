@@ -20,7 +20,8 @@ const ChatRoom = ({
 	}
 
 	useEffect(() => {
-		fetch(`/users/${recipient}`)
+		// [ ] needs to be changed to the id of the user on the other side of this chat room
+		fetch(`/users/${5}`)
 			.then((res) => res.json())
 			.then((user) => {
 				setOtherUser(user);
