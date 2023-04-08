@@ -35,6 +35,11 @@ const Explore = () => {
 		}
 	}, [directionChanged]);
 
+	function handleMatch() {
+		showModal();
+		fetchUser(user.id, setUser);
+	}
+
 	function showModal() {
 		setShowMatchModal(true);
 		setTimeout(() => {
@@ -58,7 +63,7 @@ const Explore = () => {
 			.then((res) => res.json())
 			.then(
 				// is it a match? if so, refetch the user from db
-				(data) => data[0] === "match" && fetchUser(user.id, setUser)
+				(data) => data[0] === "match" && handleMatch()
 			)
 			.catch((error) => console.log("\n\n EXPLORE COMPONENT: Error:", error));
 		setExitDirection(1);
@@ -72,9 +77,6 @@ const Explore = () => {
 
 	return (
 		<div className="">
-			<button onClick={showModal} className="bg-info h-fit w-1/2 absolute">
-				TEST BUTTON
-			</button>
 			<AnimatePresence mode="wait">
 				{showMatchModal && (
 					<motion.div
