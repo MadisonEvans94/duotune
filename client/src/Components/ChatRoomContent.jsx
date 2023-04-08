@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
 const ChatRoomContent = ({ messages, setMessages }) => {
+	console.log("messages", messages);
 	const [formMessage, setFormMessage] = useState("");
 	const { user } = useContext(UserContext);
 	const handleInputChange = (e) => {

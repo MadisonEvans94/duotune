@@ -11,23 +11,27 @@ export default function Matches() {
 	const { user } = useContext(UserContext);
 	const [recipients, setRecipients] = useState(null);
 
+	const fetchData = async () => {
+		try {
+			let fetchedChatRooms = [];
+			for (const chatroom of user.chat_rooms) {
+				const chatroomResponse = await fetch(`/chat_rooms/${chatroom.id}`);
+				const chatroomInstance = await chatroomResponse.json();
+				fetchedChatRooms.push(chatroomInstance);
+			}
+
+			setChatRooms(fetchedChatRooms);
+			setMessages(fetchedChatRooms[0].messages);
+		} catch (error) {
+			console.error("Error fetching data:", error);
+		}
+	};
+
+	useEffect(() => console.log("CHAT ROOMS************", chatRooms), []);
+
 	useEffect(() => {
-		setChatRooms(user.chat_rooms);
 		const chatroomIdList = user.chat_rooms.map((chatroom) => chatroom.id);
 		setRecipients(chatroomIdList);
-		const fetchData = async () => {
-			try {
-				const chatroomResponse = await fetch(
-					`/chat_rooms/${user.chat_rooms[0].id}`
-				);
-				const chatroomInstance = await chatroomResponse.json();
-
-				setMessages(chatroomInstance.messages);
-			} catch (error) {
-				console.error("Error fetching data:", error);
-			}
-		};
-
 		fetchData();
 	}, [user.chat_rooms, user.id]);
 
