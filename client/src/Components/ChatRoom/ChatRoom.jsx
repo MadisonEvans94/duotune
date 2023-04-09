@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import UserContext from "./Contexts/UserContext";
+import UserContext from "../Contexts/UserContext";
 const ChatRoom = ({
 	chatRoomObject,
 	setDisplayedMessages,
