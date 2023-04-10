@@ -1,12 +1,7 @@
 import React from "react";
-import Blob from "../Components/Blob";
 
 const Settings = () => {
-	return (
-		<div className="">
-			<Blob />
-		</div>
-	);
+	return <div className=""></div>;
 };
 
 export default Settings;

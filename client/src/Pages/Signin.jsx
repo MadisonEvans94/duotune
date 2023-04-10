@@ -3,7 +3,8 @@ import { useNavigate } from "react-router-dom";
 import backgroundImage from "../assets/images/layered-waves-haikei.svg";
 import AuthContext from "../Components/Contexts/AuthContext";
 import UserContext from "../Components/Contexts/UserContext";
-
+import Blob from "../Components/Blob";
+import colors from "../utils/colorPalette";
 const Signin = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
@@ -205,16 +206,18 @@ const Signin = () => {
 					</div>
 				</div>
 
-				<h1 className="absolute top-1/3 right-1/4 text-[120px] font-display text-dark z-20 w-full text-right">
+				<h1 className="absolute top-1/3 right-1/4 text-[120px] font-display z-20 w-full text-right text-info">
 					DuoTune
 				</h1>
-				<img
+				<Blob duration={10000} color={colors.secondary} />
+
+				{/* <img
 					className="
 					inset-0 h-full w-full object-cover border absolute hidden
 					xl:block"
 					src={backgroundImage}
 					alt="DuoTune"
-				/>
+				/> */}
 			</div>
 		</>
 	);
