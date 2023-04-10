@@ -209,7 +209,7 @@ const Signin = () => {
 				<h1 className="absolute top-1/3 right-1/4 text-[120px] font-display z-20 w-full text-right text-info">
 					DuoTune
 				</h1>
-				<Blob duration={10000} color={colors.secondary} />
+				<Blob duration={18000} color={colors.secondary} />
 
 				{/* <img
 					className="
