@@ -1,4 +1,4 @@
-import Matches from "./Pages/Matches";
+import Matches from "./Pages/Matches/Matches";
 import Explore from "./Pages/Explore";
 import About from "./Pages/About";
 import Profile from "./Pages/Profile";

@@ -1,8 +1,8 @@
 import React from "react";
-import UserContext from "./Contexts/UserContext";
+import UserContext from "../Contexts/UserContext";
 import { useContext } from "react";
 
-import ChatRoom from "./ChatRoom/ChatRoom";
+import ChatRoom from "../ChatRoom/ChatRoom";
 const ChatRoomList = ({
 	selectedChatRoomID,
 	setSelectedChatRoomID,

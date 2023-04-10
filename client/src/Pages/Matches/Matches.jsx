@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
-import UserContext from "../Components/Contexts/UserContext";
-import matches from "../seed/matches.json";
-import ChatRoomList from "../Components/ChatRoomList";
-import ChatRoomContent from "../Components/ChatRoomContent";
-import MatchCard from "../Components/MatchCard";
+import UserContext from "../../Components/Contexts/UserContext";
+import matches from "../../seed/matches.json";
+import ChatRoomList from "../../Components/ChatRoomList/ChatRoomList";
+import ChatRoomContent from "../../Components/ChatRoomContent";
+import MatchCard from "../../Components/MatchCard";
 
 export default function Matches() {
 	const [displayedMessages, setDisplayedMessages] = useState(null);

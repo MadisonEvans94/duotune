@@ -10,7 +10,6 @@ const ChatRoom = ({
 	const [otherUser, setOtherUser] = useState(null);
 	const { user } = useContext(UserContext);
 
-	// console.log("CHATROOM COMPONENT: Chat room object: ", chatRoomObject);
 	function populateChatRoom() {
 		console.log("CHATROOM COMPONENT: SET SELECTED CHATROOM: ", chatRoomObject);
 		setSelectedChatRoomID(chatRoomObject.id);
@@ -20,9 +19,7 @@ const ChatRoom = ({
 
 	useEffect(() => {
 		if (!chatRoomObject.chat_room_users) return;
-
 		const usersInChat = chatRoomObject.chat_room_users;
-
 		const otherChatRoomUser = usersInChat.find(
 			(chatRoomUser) => chatRoomUser.user_id !== user.id
 		);
@@ -33,11 +30,12 @@ const ChatRoom = ({
 			setOtherUser(otherUser);
 		};
 		fetchOtherUser().catch(console.error);
-	}, []);
+	}, [chatRoomObject.chat_room_users, user.id]);
 
 	return (
 		otherUser && (
 			<motion.li
+				data-testid="chatRoom"
 				initial={{ x: 0 }}
 				whileHover={{ x: 10 }}
 				onClick={populateChatRoom}
