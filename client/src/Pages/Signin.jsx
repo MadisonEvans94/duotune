@@ -45,7 +45,6 @@ const Signin = () => {
 	return (
 		<>
 			<div className="flex min-h-full text-info relative">
-				{/* <Blob /> */}
 				<div className="z-50 bg-transparent flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 xl:flex-none lg:px-20 xl:px-24">
 					<div className="mx-auto w-full max-w-sm lg:w-96">
 						<div className="mt-8">
@@ -206,18 +205,10 @@ const Signin = () => {
 					</div>
 				</div>
 
-				<h1 className="absolute top-1/3 right-1/4 text-[120px] font-display z-20 w-full text-right text-info">
+				<h1 className="absolute top-1/3 text-[120px] z-10 w-full text-right text-info font-display pr-32">
 					DuoTune
 				</h1>
 				<Blob duration={18000} color={colors.secondary} />
-
-				{/* <img
-					className="
-					inset-0 h-full w-full object-cover border absolute hidden
-					xl:block"
-					src={backgroundImage}
-					alt="DuoTune"
-				/> */}
 			</div>
 		</>
 	);

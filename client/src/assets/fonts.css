@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap");
+
+@font-face {
+	font-family: "custom1";
+	src: url("../assets/fonts/Aster.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "custom2";
+	src: url("../assets/fonts/Departura.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "custom3";
+	src: url("../assets/fonts/fiveo.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: "custom4";
+	src: url("../assets/fonts/Neoda.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "custom5";
+	src: url("../assets/fonts/lafonsa.otf");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "display";
+	src: url("../assets/fonts/Chillax_Complete/Fonts/OTF/Chillax-Light.otf");
+	font-weight: normal;
+	font-style: normal;
+}

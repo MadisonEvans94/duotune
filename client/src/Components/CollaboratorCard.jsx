@@ -98,7 +98,8 @@ const CollaboratorCard = ({
 				</h1>
 				<h3
 					className="
-                    italic text-xl mb-6 text-accent my-4 font-thin">
+					font-display 
+                    text-xl mb-6 text-accent my-4 font-thin">
 					{artistType}
 				</h3>
 				<p

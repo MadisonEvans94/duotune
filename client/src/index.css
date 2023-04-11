@@ -8,3 +8,7 @@
 	margin: 0;
 	padding: 0;
 }
+.masked-text {
+	-webkit-mask: url(#text-mask);
+	mask: url(#text-mask);
+}

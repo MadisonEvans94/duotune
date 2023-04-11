@@ -30,12 +30,13 @@ const Blob = ({ duration, color }) => {
 
 	return (
 		<svg
-			className="w-full h-full absolute border"
+			className="w-full h-full absolute"
 			id="visual"
 			viewBox="0 0 600 600"
 			xmlns="http://www.w3.org/2000/svg"
 			preserveAspectRatio="xMidYMid meet"
 			version="1.1">
+			<mask id="text-mask" />
 			<g transform="translate(451.76239464738063 277.3923827674436)">
 				<path
 					id="blob-path"

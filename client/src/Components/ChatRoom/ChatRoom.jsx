@@ -39,7 +39,7 @@ const ChatRoom = ({
 				initial={{ x: 0 }}
 				whileHover={{ x: 10 }}
 				onClick={populateChatRoom}
-				className="py-4 flex flex-row pl-2">
+				className="font-display py-4 flex flex-row pl-2">
 				<img
 					className="h-10 w-10 rounded-full object-cover"
 					src={otherUser.profile_picture_url}
