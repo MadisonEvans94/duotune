@@ -1,12 +1,12 @@
 import React from "react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import UserContext from "../Components/Contexts/UserContext";
 import { motion } from "framer-motion";
 import matches from "../seed/matches.json";
 import { FaUserFriends as Connect } from "react-icons/fa";
 const Profile = () => {
 	const { user } = useContext(UserContext);
-
+	const [showProfileEditModal, setShowProfileEditModal] = useState(true);
 	const data = {
 		genres: ["hip-hop", "r&b"],
 		social_links: ["https://twitter.com/", "https://soundcloud.com/"],
@@ -14,26 +14,41 @@ const Profile = () => {
 	};
 	return (
 		<>
+			<div className={showProfileEditModal ? "" : "hidden"}>asdf</div>
 			{user && (
 				<div
 					className="
 					flex flex-row justify-center w-full h-full text-info">
-					<div className="w-1/3 h-full p-4 flex flex-col justify-start">
+					<div
+						className="
+						w-1/3 h-full p-4 flex flex-col justify-start">
 						<div
 							className="
 							overflow-hidden relative rounded-md text-primary h-[460px] flex flex-col justify-end">
 							<img
 								src={user.profile_picture_url}
 								alt="prof pic"
-								className="w-full h-full absolute object-cover"
+								className="
+								w-full h-full absolute object-cover"
 							/>
-							<div className="w-full h-full absolute bg-gradient-to-t from-[#00000055] to-fuchsia-[#00000000]" />
+							<div
+								className="
+								w-full h-full absolute bg-gradient-to-t from-[#00000055] to-fuchsia-[#00000000]"
+							/>
 						</div>
-						<div className="z-50 px-4">
-							<h1 className="text-4xl font-display mt-6 text-info">
+						<div
+							className="
+							z-50 px-4">
+							<h1
+								className="
+								text-4xl font-display mt-6 text-info">
 								{user.artist_name}
 							</h1>
-							<p className="my-2 font-thin italic">{user.user_type.name}</p>
+							<p
+								className="
+								my-2 font-thin italic">
+								{user.user_type.name}
+							</p>
 						</div>
 						<ul
 							className="
@@ -45,41 +60,67 @@ const Profile = () => {
 							<li>Searching for a user.in_search_of</li>
 						</ul>
 					</div>
-					{/* TODO: Content section */}
+
 					<div
 						className="
 						w-2/3 h-full pr-4 flex flex-col justify-start 
 						xl:w-[900px]">
-						<h2 className="text-2xl my-4 font-display text-center text-accent">
+						<h2
+							className="
+							text-2xl my-4 font-display text-center text-accent">
 							About Me
 						</h2>
-						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
+						<div
+							className="
+							p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
 							{user.bio}
 						</div>
-						<h2 className="text-2xl my-4 font-display text-center text-accent">
+						<h2
+							className="
+							text-2xl my-4 font-display text-center text-accent">
 							My Sound
 						</h2>
-						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
+						<div
+							className="
+							p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
 							data.song_sample
 						</div>
-						<div className="flex flex-row justify-center text-accent items-center my-4">
-							<h2 className="text-2xl font-display text-center text-accent">
+						<div
+							className="
+							flex flex-row justify-center text-accent items-center my-4">
+							<h2
+								className="
+								text-2xl font-display text-center text-accent">
 								Connect
 							</h2>
-							<Connect className="mx-4" size="1.5em" />
+							<Connect
+								className="
+								mx-4"
+								size="1.5em"
+							/>
 						</div>
-						<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
-							<div className="w-full flex flex-row justify-around">
+						<div
+							className="
+							p-4 h-[150px] flex flex-col justify-around rounded-lg border border-accent hover:bg-accent hover:text-primary transition">
+							<div
+								className="
+								w-full flex flex-row justify-around">
 								{data.social_links.map((link, key) => {
 									return <p key={key}>{link}</p>;
 								})}
 							</div>
 						</div>
-						<div className=" w-full h-full relative flex flex-col">
-							<h2 className="text-2xl font-display text-center my-4 text-accent">
+						<div
+							className="
+							w-full h-full relative flex flex-col">
+							<h2
+								className="
+								text-2xl font-display text-center my-4 text-accent">
 								Recent Matches
 							</h2>
-							<div className=" h-full w-full grid grid-cols-3 gap-2 justify-between items-center rounded-lg mb-12">
+							<div
+								className=" 
+								h-full w-full grid grid-cols-3 gap-2 justify-between items-center rounded-lg mb-12">
 								{matches &&
 									matches.map((match, key) => (
 										<motion.div
@@ -106,7 +147,8 @@ const Profile = () => {
 												</div>
 											</div>
 											<img
-												className="w-full h-full object-cover"
+												className="
+												w-full h-full object-cover"
 												src={match.profile_picture_url}
 												alt={match.artist_name}
 											/>
