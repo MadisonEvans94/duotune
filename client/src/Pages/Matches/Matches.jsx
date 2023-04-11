@@ -11,13 +11,8 @@ export default function Matches() {
 	const [recipients, setRecipients] = useState([]);
 	const [chatRoomUserInstances, setChatRoomUserInstances] = useState([]);
 	const [selectedChatRoomID, setSelectedChatRoomID] = useState(null);
+	const [swipers, setSwipers] = useState(null);
 	const fetchChatRoomObjects = async () => {
-		console.log(
-			"CURRENT USER STATE: ",
-			user,
-			"\n\nCURRENT USER CHATROOM OBJECTS: ",
-			chatRoomObjects
-		);
 		try {
 			setChatRoomUserInstances(user.chat_rooms);
 			if (user.chat_rooms.length > 0) {
@@ -44,9 +39,16 @@ export default function Matches() {
 			console.error("\n\nMATCHES COMPONENT: Error fetching data:", error);
 		}
 	};
+	const fetchSwipers = () => {
+		fetch(`/users/${user.id}`)
+			.then((response) => response.json())
+			.then((user) => console.log("USER SWIPES", user.swiper_swipes))
+			.catch((error) => console.log("ERROR:", error));
+	};
 
 	useEffect(() => {
 		fetchChatRoomObjects();
+		fetchSwipers();
 	}, []);
 
 	return (
