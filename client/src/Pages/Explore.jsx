@@ -124,7 +124,7 @@ const Explore = () => {
 					{userPool && collaboratorCount < userPool.length && (
 						<CollaboratorCard
 							key={userPool[collaboratorCount].id}
-							audioFile="https://res.cloudinary.com/degnyqukw/video/upload/v1680658098/carti_thing_ih9wft.mp3"
+							audioFile="https://res.cloudinary.com/degnyqukw/video/upload/v1681177822/SORRY_NOT_SORRY_lxkdaf.mp3"
 							userPool={userPool}
 							artistName={userPool[collaboratorCount].artist_name}
 							location={userPool[collaboratorCount].location}
