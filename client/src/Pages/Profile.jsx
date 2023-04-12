@@ -8,7 +8,7 @@ import EditButton from "../Components/EditButton";
 
 const Profile = () => {
 	const { user } = useContext(UserContext);
-	const [showProfileEditModal, setShowProfileEditModal] = useState(false);
+	const [showBioEditor, setShowBioEditor] = useState(false);
 	const data = {
 		genres: ["hip-hop", "r&b"],
 		social_links: ["https://twitter.com/", "https://soundcloud.com/"],
@@ -16,7 +16,7 @@ const Profile = () => {
 	};
 	function toggleProfileEditModal() {
 		console.log("edit clicked");
-		setShowProfileEditModal((prev) => !prev);
+		setShowBioEditor((prev) => !prev);
 	}
 	return (
 		<>
@@ -54,7 +54,8 @@ const Profile = () => {
 								Bio
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
-								{user.bio}
+								{showBioEditor ? <div>editing</div> : user.bio}
+
 								<div className="absolute right-0 top-0 m-2">
 									<EditButton
 										callback={toggleProfileEditModal}
