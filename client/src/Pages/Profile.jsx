@@ -78,6 +78,7 @@ const Profile = () => {
 							<h2 className="text-2xl my-4 font-display text-center text-accent">
 								Bio
 							</h2>
+
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
 								{showBioEditor ? (
 									<ProfileInfoEditor patchFunction={patchBio} />
@@ -92,9 +93,11 @@ const Profile = () => {
 									/>
 								</div>
 							</div>
+
 							<h2 className="text-2xl my-4 font-display text-center text-accent">
 								My Sound
 							</h2>
+
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
 								{showSongEditor ? (
 									<ProfileInfoEditor patchFunction={patchSong} />
@@ -108,12 +111,11 @@ const Profile = () => {
 									/>
 								</div>
 							</div>
-							<div className="flex flex-row justify-center text-accent items-center my-4">
-								<h2 className="text-2xl font-display text-center text-accent">
-									User Type
-								</h2>
-								{/* <Connect className="mx-4" size="1.5em" /> */}
-							</div>
+
+							<h2 className="text-2xl my-4 font-display text-center text-accent">
+								User Type
+							</h2>
+							{/* <Connect className="mx-4" size="1.5em" /> */}
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
 								{showUserTypeEditor ? (
 									<ProfileInfoEditor patchFunction={patchUserType} />
