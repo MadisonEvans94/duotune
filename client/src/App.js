@@ -45,7 +45,7 @@ function App() {
 	}, [userID, isLoggedIn]);
 
 	return (
-		<div className="w-screen h-screen absolute bg-primary font-paragraph">
+		<div className="w-screen h-screen relative bg-primary font-paragraph">
 			<UserContext.Provider
 				value={{
 					userID,

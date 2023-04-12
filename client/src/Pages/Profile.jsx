@@ -4,6 +4,8 @@ import UserContext from "../Components/Contexts/UserContext";
 import { motion, AnimatePresence } from "framer-motion";
 import matches from "../seed/matches.json";
 import { FaUserFriends as Connect } from "react-icons/fa";
+import EditButton from "../Components/EditButton";
+
 const Profile = () => {
 	const { user } = useContext(UserContext);
 	const [showProfileEditModal, setShowProfileEditModal] = useState(false);
@@ -12,32 +14,16 @@ const Profile = () => {
 		social_links: ["https://twitter.com/", "https://soundcloud.com/"],
 		song_sample: "https://soundcloud.com",
 	};
+	function toggleProfileEditModal() {
+		console.log("edit clicked");
+		setShowProfileEditModal((prev) => !prev);
+	}
 	return (
 		<>
-			<div className={showProfileEditModal ? "" : "hidden"}>asdf</div>
 			{user && (
 				<>
 					<div className="w-full flex flex-row justify-end px-4 pt-2">
-						<AnimatePresence mode="wait">
-							<motion.button
-								initial={{ x: 0, y: 0, boxShadow: "0px 0px 0px 0px black" }}
-								whileHover={{
-									x: -2,
-									y: -2,
-									boxShadow: "4px 4px 1px 0px black",
-									transition: { type: "linear", duration: 0.1 },
-								}}
-								exit={{
-									x: 0,
-									y: 0,
-									boxShadow: "0px 0px 0px 0px black",
-									transition: { type: "linear", duration: 0.1 },
-								}}
-								className="
-								text-info bg-accent font-display text-right text-xs p-1 rounded w-fit">
-								Edit Profile
-							</motion.button>{" "}
-						</AnimatePresence>
+						<EditButton callback={toggleProfileEditModal} />
 					</div>
 					<div className="flex flex-row justify-center w-full h-full text-info">
 						<div className="w-1/3 h-full p-4 flex flex-col justify-start">

@@ -118,9 +118,12 @@ const Explore = () => {
 				whileHover={{
 					scale: 1.1,
 					color: colors.info,
-					boxShadow: "0px 0px 0px 0px black",
 				}}>
-				<Right size="3em" onClick={rightClick} />
+				<Right
+					size="3em"
+					onClick={rightClick}
+					style={{ textShadow: "10px 10px 0px 0px" }}
+				/>
 			</motion.div>
 
 			<div className="flex flex-row justify-center items-center h-full">
