@@ -1,10 +1,13 @@
 import React from "react";
 import { useContext, useState } from "react";
+
 import UserContext from "../Components/Contexts/UserContext";
 import { motion, AnimatePresence } from "framer-motion";
+import colors from "../utils/colorPalette";
 import matches from "../seed/matches.json";
 import { FaUserFriends as Connect } from "react-icons/fa";
 import EditButton from "../Components/EditButton";
+import ProfileInfoBlock from "../Components/ProfileInfoBlock";
 
 const Profile = () => {
 	const { user } = useContext(UserContext);
@@ -14,9 +17,13 @@ const Profile = () => {
 		social_links: ["https://twitter.com/", "https://soundcloud.com/"],
 		song_sample: "https://soundcloud.com",
 	};
-	function toggleProfileEditModal() {
+	function toggleBioEditor() {
 		console.log("edit clicked");
 		setShowBioEditor((prev) => !prev);
+	}
+	function patchBio() {
+		console.log("patch clicked");
+		toggleBioEditor();
 	}
 	return (
 		<>
@@ -55,23 +62,14 @@ const Profile = () => {
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
 								{showBioEditor ? (
-									<div>
-										<label htmlFor="bio"></label>
-										<textarea
-											id="bio"
-											rows={2}
-											className="w-full rounded mt-10"
-											name="bio"
-											type="text"
-										/>
-									</div>
+									<ProfileInfoBlock patchFunction={patchBio} />
 								) : (
 									user.bio
 								)}
 
 								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
-										callback={toggleProfileEditModal}
+										callback={toggleBioEditor}
 										buttonText="Edit Bio"
 									/>
 								</div>
@@ -83,7 +81,7 @@ const Profile = () => {
 								data.song_sample
 								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
-										callback={toggleProfileEditModal}
+										callback={toggleBioEditor}
 										buttonText="Edit Song Demo"
 									/>
 								</div>
@@ -98,7 +96,7 @@ const Profile = () => {
 								Producer
 								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
-										callback={toggleProfileEditModal}
+										callback={toggleBioEditor}
 										buttonText="Edit User Type"
 									/>
 								</div>
