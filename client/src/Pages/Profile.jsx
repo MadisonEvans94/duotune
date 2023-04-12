@@ -54,9 +54,22 @@ const Profile = () => {
 								Bio
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
-								{showBioEditor ? <div>editing</div> : user.bio}
+								{showBioEditor ? (
+									<div>
+										<label htmlFor="bio"></label>
+										<textarea
+											id="bio"
+											rows={2}
+											className="w-full rounded mt-10"
+											name="bio"
+											type="text"
+										/>
+									</div>
+								) : (
+									user.bio
+								)}
 
-								<div className="absolute right-0 top-0 m-2">
+								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
 										callback={toggleProfileEditModal}
 										buttonText="Edit Bio"
@@ -68,7 +81,7 @@ const Profile = () => {
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
 								data.song_sample
-								<div className="absolute right-0 top-0 m-2">
+								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
 										callback={toggleProfileEditModal}
 										buttonText="Edit Song Demo"
@@ -83,7 +96,7 @@ const Profile = () => {
 							</div>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
 								Producer
-								<div className="absolute right-0 top-0 m-2">
+								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
 										callback={toggleProfileEditModal}
 										buttonText="Edit User Type"
