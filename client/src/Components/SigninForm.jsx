@@ -1,8 +1,41 @@
 import React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 
-const SigninForm = ({ submissionHandler, toggler }) => {
+const SigninForm = ({ toggler, setUser, setIsLoggedIn }) => {
+	const navigate = useNavigate();
+	function handleSignin(e) {
+		e.preventDefault();
+		const userData = {
+			email: email,
+			password: password,
+		};
+
+		fetch("/signin", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(userData),
+			credentials: "include",
+		})
+			.then((response) => {
+				if (response.ok) {
+					return response.json();
+				} else {
+					throw new Error("\n\nSIGNIN COMPONENT: Authentication failed");
+				}
+			})
+			.then((user) => {
+				setUser(user);
+				setIsLoggedIn(true); // Update the loggedIn state in the AuthProvider
+				console.log(`\n\nSIGNIN COMPONENT: Login was successful...`, user);
+				navigate("/explore");
+			})
+			.catch((error) => console.log(`\n\nSIGNIN COMPONENT: `, error));
+	}
+
 	const buttonVariants = {
 		initial: {
 			filter: "drop-shadow(0px 0px 0px rgba(0, 0, 0, 1))",
@@ -104,7 +137,7 @@ const SigninForm = ({ submissionHandler, toggler }) => {
 							action="#"
 							method="POST"
 							className="space-y-6"
-							onSubmit={submissionHandler}>
+							onSubmit={handleSignin}>
 							<div>
 								<label
 									htmlFor="email"

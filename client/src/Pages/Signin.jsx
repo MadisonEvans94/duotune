@@ -18,44 +18,18 @@ const Signin = () => {
 	function toggleSignup() {
 		setSignupForm((prev) => !prev);
 	}
-	function handleSignin(e) {
-		e.preventDefault();
-		const userData = {
-			email: email,
-			password: password,
-		};
-
-		fetch("/signin", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(userData),
-			credentials: "include",
-		})
-			.then((response) => {
-				if (response.ok) {
-					return response.json();
-				} else {
-					throw new Error("\n\nSIGNIN COMPONENT: Authentication failed");
-				}
-			})
-			.then((user) => {
-				setUser(user);
-				setIsLoggedIn(true); // Update the loggedIn state in the AuthProvider
-				console.log(`\n\nSIGNIN COMPONENT: Login was successful...`, user);
-				navigate("/explore");
-			})
-			.catch((error) => console.log(`\n\nSIGNIN COMPONENT: `, error));
-	}
 
 	return (
 		<>
 			<div className="flex min-h-full text-info relative">
 				{signupForm ? (
-					<SigninForm submissionHandler={handleSignin} toggler={toggleSignup} />
+					<SigninForm
+						toggler={toggleSignup}
+						setUser={setUser}
+						setIsLoggedIn={setIsLoggedIn}
+					/>
 				) : (
-					<SignupForm submissionHandler={handleSignin} toggler={toggleSignup} />
+					<SignupForm submissionHandler={() => {}} toggler={toggleSignup} />
 				)}
 
 				<h1 className="absolute top-[40%] text-[100px] z-10 w-full text-right text-info font-display pr-[25%]">
