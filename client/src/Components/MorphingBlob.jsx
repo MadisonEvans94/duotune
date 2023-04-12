@@ -7,9 +7,9 @@ const MorphingBlob = () => {
 			<MeshDistortMaterial
 				color={colors.accent}
 				attach="material"
-				distort={0.3}
-				speed={2}
-				roughness={0.01}
+				distort={0.33}
+				speed={1.5}
+				roughness={0.8}
 			/>
 		</Sphere>
 	);

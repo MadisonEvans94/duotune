@@ -206,13 +206,17 @@ const Signin = () => {
 					</div>
 				</div>
 
-				<h1 className="absolute top-1/3 text-[120px] z-10 w-full text-right text-info font-display pr-32">
+				<h1 className="absolute top-[40%] text-[120px] z-10 w-full text-right text-info font-display pr-32">
 					DuoTune
 				</h1>
-				<div className="absolute w-full">
+				<div className="absolute w-full h-full ml-[300px]">
 					<Canvas className="">
-						<ambientLight intensity={0.2} />
-						<directionalLight position={[-1, 5, 2]} intensity={1} />
+						<ambientLight intensity={0.5} />
+						<directionalLight
+							position={[-1, 5, 2]}
+							intensity={2.5}
+							color="#8339df"
+						/>
 						<MorphingBlob />
 					</Canvas>
 				</div>
