@@ -7,7 +7,7 @@ import colors from "../utils/colorPalette";
 import matches from "../seed/matches.json";
 import { FaUserFriends as Connect } from "react-icons/fa";
 import EditButton from "../Components/EditButton";
-import ProfileInfoBlock from "../Components/ProfileInfoBlock";
+import ProfileInfoEditor from "../Components/ProfileInfoEditor";
 
 const Profile = () => {
 	const { user } = useContext(UserContext);
@@ -22,6 +22,22 @@ const Profile = () => {
 		setShowBioEditor((prev) => !prev);
 	}
 	function patchBio() {
+		console.log("patch clicked");
+		toggleBioEditor();
+	}
+	function toggleSongEditor() {
+		console.log("edit clicked");
+		setShowBioEditor((prev) => !prev);
+	}
+	function patchSong() {
+		console.log("patch clicked");
+		toggleBioEditor();
+	}
+	function toggleUserType() {
+		console.log("edit clicked");
+		setShowBioEditor((prev) => !prev);
+	}
+	function patchUserType() {
 		console.log("patch clicked");
 		toggleBioEditor();
 	}
@@ -62,7 +78,7 @@ const Profile = () => {
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
 								{showBioEditor ? (
-									<ProfileInfoBlock patchFunction={patchBio} />
+									<ProfileInfoEditor patchFunction={patchBio} />
 								) : (
 									user.bio
 								)}

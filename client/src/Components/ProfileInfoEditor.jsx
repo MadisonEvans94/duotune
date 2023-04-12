@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTelegramPlane as Send } from "react-icons/fa";
 
-const ProfileInfoBlock = ({ patchFunction }) => {
+const ProfileInfoEditor = ({ patchFunction }) => {
 	return (
 		<div className="flex flex-row">
 			<label htmlFor="bio" />
@@ -23,4 +23,4 @@ const ProfileInfoBlock = ({ patchFunction }) => {
 	);
 };
 
-export default ProfileInfoBlock;
+export default ProfileInfoEditor;
