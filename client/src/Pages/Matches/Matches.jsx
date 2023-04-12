@@ -59,7 +59,6 @@ export default function Matches() {
 							selectedChatRoomID={selectedChatRoomID}
 							setSelectedChatRoomID={setSelectedChatRoomID}
 							setDisplayedMessages={setDisplayedMessages}
-							chatRoomObjects={chatRoomObjects}
 							recipients={recipients}
 						/>
 					</div>

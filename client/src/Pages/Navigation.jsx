@@ -1,7 +1,7 @@
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 
@@ -13,6 +13,13 @@ function classNames(...classes) {
 }
 
 const Navigation = () => {
+	const location = useLocation();
+	const isActive = (path) => {
+		return location.pathname === path
+			? "text-blue-500 border-b-2 border-blue-500"
+			: "";
+	};
+
 	const { user, setUser } = useContext(UserContext);
 	const { setIsLoggedIn } = useContext(AuthContext);
 
@@ -43,28 +50,27 @@ const Navigation = () => {
 							<div className="flex">
 								<div className="flex flex-shrink-0 items-center" />
 								<div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-									{/* Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" */}
-									<Link
+									<NavLink
 										to="/explore"
 										className="font-display inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-400 hover:border-gray-300">
 										Explore
-									</Link>
-									<Link
+									</NavLink>
+									<NavLink
 										to="/matches"
 										className="font-display inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-400 hover:border-gray-300">
 										Matches
-									</Link>
-									<Link
+									</NavLink>
+									<NavLink
 										to="/about"
 										className="font-display inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-400 hover:border-gray-300">
 										About
-									</Link>
+									</NavLink>
 								</div>
 							</div>
 							<div className="hidden sm:ml-6 sm:flex sm:items-center">
 								<button
 									type="button"
-									className="rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+									className="rounded-full p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">
 									<span className="sr-only">View notifications</span>
 									<BellIcon className="h-6 w-6" aria-hidden="true" />
 								</button>
@@ -72,7 +78,7 @@ const Navigation = () => {
 								{/* Profile dropdown */}
 								<Menu as="div" className="relative ml-3">
 									<div>
-										<Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+										<Menu.Button className="flex rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">
 											<span className="sr-only">Open user menu</span>
 											<img
 												className="h-8 w-8 rounded-full object-cover"
@@ -92,26 +98,26 @@ const Navigation = () => {
 										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-[0px 4px 0px #000] ring-1 ring-black ring-opacity-5 focus:outline-none">
 											<Menu.Item>
 												{({ active }) => (
-													<Link
+													<NavLink
 														to="/profile"
 														className={classNames(
 															active ? "bg-gray-100" : "",
 															"block px-4 py-2 text-sm text-gray-700"
 														)}>
 														Your Profile
-													</Link>
+													</NavLink>
 												)}
 											</Menu.Item>
 											<Menu.Item>
 												{({ active }) => (
-													<Link
+													<NavLink
 														to="/settings"
 														className={classNames(
 															active ? "bg-gray-100" : "",
 															"block px-4 py-2 text-sm text-gray-700"
 														)}>
 														Settings
-													</Link>
+													</NavLink>
 												)}
 											</Menu.Item>
 											<Menu.Item>
@@ -132,7 +138,7 @@ const Navigation = () => {
 							</div>
 							<div className="-mr-2 flex items-center sm:hidden">
 								{/* Mobile menu button */}
-								<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
+								<Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-accent">
 									<span className="sr-only">Open main menu</span>
 									{open ? (
 										<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -148,13 +154,13 @@ const Navigation = () => {
 						<div className="space-y-1 pt-2 pb-3">
 							{/* Current: "bg-indigo-50 border-indigo-500 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700" */}
 							<Disclosure.Button className="block border-l-4 border-indigo-500 bg-indigo-50 py-2 pl-3 pr-4 text-base font-medium text-indigo-700">
-								<Link to="/explore">Explore</Link>
+								<NavLink to="/explore">Explore</NavLink>
 							</Disclosure.Button>
 							<Disclosure.Button className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">
-								<Link to="/matches">Matches</Link>
+								<NavLink to="/matches">Matches</NavLink>
 							</Disclosure.Button>
 							<Disclosure.Button className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-gray-300 hover:bg-gray-50 hover:text-gray-700">
-								<Link to="/about">About</Link>
+								<NavLink to="/about">About</NavLink>
 							</Disclosure.Button>
 						</div>
 						<div className="border-t border-gray-200 pt-4 pb-3">
@@ -176,17 +182,17 @@ const Navigation = () => {
 								</div>
 								<button
 									type="button"
-									className="ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+									className="ml-auto flex-shrink-0 rounded-full bg-white p-1 text-gray-400 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2">
 									<span className="sr-only">View notifications</span>
 									<BellIcon className="h-6 w-6" aria-hidden="true" />
 								</button>
 							</div>
 							<div className="mt-3 space-y-1">
 								<Disclosure.Button className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800">
-									<Link to="/profile">Your Profile</Link>
+									<NavLink to="/profile">Your Profile</NavLink>
 								</Disclosure.Button>
 								<Disclosure.Button className="block px-4 py-2 text-base font-medium text-gray-500 hover:bg-gray-100 hover:text-gray-800">
-									<Link to="/settings">Settings</Link>
+									<NavLink to="/settings">Settings</NavLink>
 								</Disclosure.Button>
 								<Disclosure.Button
 									href="https://google.com/"

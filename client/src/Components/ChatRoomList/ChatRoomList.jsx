@@ -8,9 +8,9 @@ const ChatRoomList = ({
 	setSelectedChatRoomID,
 	setDisplayedMessages,
 	recipients,
-	chatRoomObjects,
 }) => {
-	const { user } = useContext(UserContext);
+	const { user, chatRoomObjects } = useContext(UserContext);
+
 	const updatedRecipients = recipients.filter(
 		(value) => value.user_id !== user.id
 	);

@@ -8,16 +8,15 @@ const ChatRoomContent = ({
 	displayedMessages,
 	setDisplayedMessages,
 	selectedChatRoomID,
-	setSelectedChatRoomID,
 }) => {
-	console.log("SELECTED CHAT ROOM ------->>> : ", selectedChatRoomID);
 	const [formMessage, setFormMessage] = useState("");
-	const { user } = useContext(UserContext);
+	const { user, chatRoomObjects } = useContext(UserContext);
+
+	console.log("SELECTED CHAT ROOM ------->>> : ", selectedChatRoomID);
+	console.log("CHATROOM OBJECTS ------->>> : ", chatRoomObjects);
 	const handleInputChange = (e) => {
 		setFormMessage(e.target.value);
 	};
-
-	// [ ] need to also add it to the global place where we're keeping chatrooms so that when you click off it's still there (client side )
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
