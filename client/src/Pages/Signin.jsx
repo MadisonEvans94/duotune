@@ -1,10 +1,11 @@
 import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import backgroundImage from "../assets/images/layered-waves-haikei.svg";
+import { Canvas } from "@react-three/fiber";
 import AuthContext from "../Components/Contexts/AuthContext";
 import UserContext from "../Components/Contexts/UserContext";
 import Blob from "../Components/Blob";
 import colors from "../utils/colorPalette";
+import MorphingBlob from "../Components/MorphingBlob";
 const Signin = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
@@ -208,7 +209,15 @@ const Signin = () => {
 				<h1 className="absolute top-1/3 text-[120px] z-10 w-full text-right text-info font-display pr-32">
 					DuoTune
 				</h1>
-				<Blob duration={18000} color={colors.secondary} />
+				<div className="absolute w-full">
+					<Canvas className="">
+						<ambientLight intensity={0.2} />
+						<directionalLight position={[-1, 5, 2]} intensity={1} />
+						<MorphingBlob />
+					</Canvas>
+				</div>
+
+				{/* <Blob duration={18000} color={colors.secondary} /> */}
 			</div>
 		</>
 	);
