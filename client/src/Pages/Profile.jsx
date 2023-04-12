@@ -22,9 +22,6 @@ const Profile = () => {
 		<>
 			{user && (
 				<>
-					<div className="w-full flex flex-row justify-end px-4 pt-2">
-						<EditButton callback={toggleProfileEditModal} />
-					</div>
 					<div className="flex flex-row justify-center w-full h-full text-info">
 						<div className="w-1/3 h-full p-4 flex flex-col justify-start">
 							<div className="overflow-hidden relative rounded-md text-primary h-[460px] flex flex-col justify-end">
@@ -56,14 +53,26 @@ const Profile = () => {
 							<h2 className="text-2xl my-4 font-display text-center text-accent">
 								Bio
 							</h2>
-							<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
+							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
 								{user.bio}
+								<div className="absolute right-0 top-0 m-2">
+									<EditButton
+										callback={toggleProfileEditModal}
+										buttonText="Edit Bio"
+									/>
+								</div>
 							</div>
 							<h2 className="text-2xl my-4 font-display text-center text-accent">
 								My Sound
 							</h2>
-							<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
+							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
 								data.song_sample
+								<div className="absolute right-0 top-0 m-2">
+									<EditButton
+										callback={toggleProfileEditModal}
+										buttonText="Edit Song Demo"
+									/>
+								</div>
 							</div>
 							<div className="flex flex-row justify-center text-accent items-center my-4">
 								<h2 className="text-2xl font-display text-center text-accent">
@@ -71,9 +80,13 @@ const Profile = () => {
 								</h2>
 								{/* <Connect className="mx-4" size="1.5em" /> */}
 							</div>
-							<div className="p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
-								<div className="w-full flex flex-row justify-around">
-									Producer
+							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
+								Producer
+								<div className="absolute right-0 top-0 m-2">
+									<EditButton
+										callback={toggleProfileEditModal}
+										buttonText="Edit User Type"
+									/>
 								</div>
 							</div>
 							<div className="w-full h-full relative flex flex-col">

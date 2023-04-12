@@ -1,6 +1,6 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-const EditButton = ({ callback }) => {
+const EditButton = ({ callback, buttonText }) => {
 	return (
 		<AnimatePresence mode="wait">
 			<motion.button
@@ -20,7 +20,7 @@ const EditButton = ({ callback }) => {
 				onClick={callback}
 				className="
 				text-info bg-accent font-display text-right text-xs p-1 rounded w-fit">
-				Edit Profile
+				{buttonText}
 			</motion.button>
 		</AnimatePresence>
 	);
