@@ -74,7 +74,7 @@ const CollaboratorCard = ({
 			}}
 			exit={exitAnimation}
 			className="
-            relative w-[400px] h-[800px] overflow-hidden rounded shadow-lg my-6
+            relative w-[400px] h-[800px] overflow-hidden rounded my-6
             md:w-[500px]
             ">
 			<img

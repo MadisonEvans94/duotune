@@ -1,7 +1,7 @@
 import React from "react";
 import { useContext, useState } from "react";
 import UserContext from "../Components/Contexts/UserContext";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import matches from "../seed/matches.json";
 import { FaUserFriends as Connect } from "react-icons/fa";
 const Profile = () => {
@@ -18,18 +18,26 @@ const Profile = () => {
 			{user && (
 				<>
 					<div className="w-full flex flex-row justify-end px-4 pt-2">
-						<motion.button
-							initial={{ x: 0, y: 0, boxShadow: "0px 0px 0px 0px black" }}
-							whileHover={{
-								x: -2,
-								y: -2,
-								boxShadow: "4px 4px 1px 0px black",
-								transition: { type: "spring", duration: 0.2 },
-							}}
-							className="
-							text-info bg-accent font-display text-right text-xs p-1 rounded w-fit">
-							Edit Profile
-						</motion.button>{" "}
+						<AnimatePresence mode="wait">
+							<motion.button
+								initial={{ x: 0, y: 0, boxShadow: "0px 0px 0px 0px black" }}
+								whileHover={{
+									x: -2,
+									y: -2,
+									boxShadow: "4px 4px 1px 0px black",
+									transition: { type: "linear", duration: 0.1 },
+								}}
+								exit={{
+									x: 0,
+									y: 0,
+									boxShadow: "0px 0px 0px 0px black",
+									transition: { type: "linear", duration: 0.1 },
+								}}
+								className="
+								text-info bg-accent font-display text-right text-xs p-1 rounded w-fit">
+								Edit Profile
+							</motion.button>{" "}
+						</AnimatePresence>
 					</div>
 					<div className="flex flex-row justify-center w-full h-full text-info">
 						<div className="w-1/3 h-full p-4 flex flex-col justify-start">

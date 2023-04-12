@@ -115,7 +115,11 @@ const Explore = () => {
 			<motion.div
 				className="absolute top-1/2 cursor-pointer right-[10%] lg:mx-24"
 				initial={{ scale: 1, color: colors.accent }}
-				whileHover={{ scale: 1.1, color: colors.info }}>
+				whileHover={{
+					scale: 1.1,
+					color: colors.info,
+					boxShadow: "0px 0px 0px 0px black",
+				}}>
 				<Right size="3em" onClick={rightClick} />
 			</motion.div>
 
