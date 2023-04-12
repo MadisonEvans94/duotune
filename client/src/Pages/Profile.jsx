@@ -12,6 +12,7 @@ import ProfileInfoEditor from "../Components/ProfileInfoEditor";
 const Profile = () => {
 	const { user } = useContext(UserContext);
 	const [showBioEditor, setShowBioEditor] = useState(false);
+	const [showSongEditor, setShowSongEditor] = useState(false);
 	const data = {
 		genres: ["hip-hop", "r&b"],
 		social_links: ["https://twitter.com/", "https://soundcloud.com/"],
@@ -27,11 +28,11 @@ const Profile = () => {
 	}
 	function toggleSongEditor() {
 		console.log("edit clicked");
-		setShowBioEditor((prev) => !prev);
+		setShowSongEditor((prev) => !prev);
 	}
 	function patchSong() {
 		console.log("patch clicked");
-		toggleBioEditor();
+		toggleSongEditor();
 	}
 	function toggleUserType() {
 		console.log("edit clicked");
@@ -77,7 +78,7 @@ const Profile = () => {
 								Bio
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
-								{showBioEditor ? (
+								{showSongEditor ? (
 									<ProfileInfoEditor patchFunction={patchBio} />
 								) : (
 									user.bio
@@ -94,7 +95,11 @@ const Profile = () => {
 								My Sound
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
-								data.song_sample
+								{showBioEditor ? (
+									<ProfileInfoEditor patchFunction={patchBio} />
+								) : (
+									<p>song</p>
+								)}
 								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
 										callback={toggleBioEditor}
