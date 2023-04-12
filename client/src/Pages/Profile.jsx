@@ -13,6 +13,7 @@ const Profile = () => {
 	const { user } = useContext(UserContext);
 	const [showBioEditor, setShowBioEditor] = useState(false);
 	const [showSongEditor, setShowSongEditor] = useState(false);
+	const [showUserTypeEditor, setShowUserTypeEditor] = useState(false);
 	const data = {
 		genres: ["hip-hop", "r&b"],
 		social_links: ["https://twitter.com/", "https://soundcloud.com/"],
@@ -34,13 +35,13 @@ const Profile = () => {
 		console.log("patch clicked");
 		toggleSongEditor();
 	}
-	function toggleUserType() {
+	function toggleUserTypeEditor() {
 		console.log("edit clicked");
-		setShowBioEditor((prev) => !prev);
+		setShowUserTypeEditor((prev) => !prev);
 	}
 	function patchUserType() {
 		console.log("patch clicked");
-		toggleBioEditor();
+		toggleUserTypeEditor();
 	}
 	return (
 		<>
@@ -78,7 +79,7 @@ const Profile = () => {
 								Bio
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg  border-accent border transition">
-								{showSongEditor ? (
+								{showBioEditor ? (
 									<ProfileInfoEditor patchFunction={patchBio} />
 								) : (
 									user.bio
@@ -95,14 +96,14 @@ const Profile = () => {
 								My Sound
 							</h2>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
-								{showBioEditor ? (
-									<ProfileInfoEditor patchFunction={patchBio} />
+								{showSongEditor ? (
+									<ProfileInfoEditor patchFunction={patchSong} />
 								) : (
 									<p>song</p>
 								)}
 								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
-										callback={toggleBioEditor}
+										callback={toggleSongEditor}
 										buttonText="Edit Song Demo"
 									/>
 								</div>
@@ -114,11 +115,15 @@ const Profile = () => {
 								{/* <Connect className="mx-4" size="1.5em" /> */}
 							</div>
 							<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
-								Producer
+								{showUserTypeEditor ? (
+									<ProfileInfoEditor patchFunction={patchUserType} />
+								) : (
+									<p>Producer</p>
+								)}
 								<div className="absolute right-0 -top-10 my-2">
 									<EditButton
-										callback={toggleBioEditor}
-										buttonText="Edit User Type"
+										callback={toggleUserTypeEditor}
+										buttonText="Edit Song Demo"
 									/>
 								</div>
 							</div>
