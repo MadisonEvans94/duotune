@@ -85,22 +85,34 @@ const ChatRoomContent = ({
 				onSubmit={handleSubmit}
 				className="border-t w-full flex flex-row justify-center">
 				<input
-					className="border h-12 w-4/5 my-4 rounded-3xl px-6"
+					className="border h-12 w-4/5 my-4 rounded-3xl px-6 xl:my-10"
 					type="text"
 					placeholder="message ..."
 					value={formMessage}
 					onChange={handleInputChange}
 				/>
 				<motion.button
-					initial={{ scale: 1, color: colors.info }}
-					whileHover={{ scale: 1.25, color: colors.accent }}
+					initial={{
+						color: colors.accent,
+						filter: "drop-shadow(0px 0px 0px rgba(0, 0, 0, 1))",
+						transition: { duration: 0.1, type: "linear" },
+					}}
+					whileTap={{
+						color: colors.info,
+						filter: "drop-shadow(8px 5px 0px rgba(0, 0, 0, 1))",
+					}}
+					whileHover={{
+						color: colors.info,
+						filter: "drop-shadow(12px 8px 0px rgba(0, 0, 0, 1))",
+						transition: { duration: 0.05, type: "linear" },
+					}}
 					type="submit"
 					title="submit"
 					className="
-                    bg-none rounded-3xl my-4 h-fit p-2 mx-3 text-light
+                    bg-none rounded-3xl my-auto ml-6 h-fit p-2 mx-3 text-light
                     ">
 					<Send
-						size="2em"
+						size="3em"
 						className=""
 						style={{
 							transform: "translateX(-5%)",

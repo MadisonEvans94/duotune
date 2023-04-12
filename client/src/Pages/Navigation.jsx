@@ -35,7 +35,7 @@ const Navigation = () => {
 	}
 
 	return (
-		<Disclosure as="nav" className="shadow-md">
+		<Disclosure as="nav" className="shadow-[0px 4px 0px #000]">
 			{({ open }) => (
 				<>
 					<div className="w-full mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 z-50">
@@ -89,7 +89,7 @@ const Navigation = () => {
 										leave="transition ease-in duration-75"
 										leaveFrom="transform opacity-100 scale-100"
 										leaveTo="transform opacity-0 scale-95">
-										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+										<Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-[0px 4px 0px #000] ring-1 ring-black ring-opacity-5 focus:outline-none">
 											<Menu.Item>
 												{({ active }) => (
 													<Link
