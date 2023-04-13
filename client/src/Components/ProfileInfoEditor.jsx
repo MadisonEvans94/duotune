@@ -1,7 +1,9 @@
 import React from "react";
+import { useState } from "react";
 import { FaTelegramPlane as Send } from "react-icons/fa";
 
-const ProfileInfoEditor = ({ patchFunction, placeHolderText, formSetter }) => {
+const ProfileInfoEditor = ({ patchFunction, placeHolderText }) => {
+	const [inputText, setInputText] = useState("");
 	return (
 		<div className="flex flex-row">
 			<label htmlFor="bio" />
@@ -13,13 +15,15 @@ const ProfileInfoEditor = ({ patchFunction, placeHolderText, formSetter }) => {
 				type="text"
 				placeholder={placeHolderText}
 				onChange={(event) => {
-					formSetter(event.target.value);
+					setInputText(event.target.value);
 					console.log(event.target.value);
 				}}
 			/>
 			<button className="mx-2">
 				<Send
-					onClick={patchFunction}
+					onClick={() => {
+						patchFunction(inputText);
+					}}
 					size="1.5em"
 					className="text-info hover:text-accent transition"
 				/>
