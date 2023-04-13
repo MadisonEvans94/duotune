@@ -7,6 +7,8 @@ const ProfileContent = ({ user }) => {
 	const [showBioEditor, setShowBioEditor] = useState(false);
 	const [showSongEditor, setShowSongEditor] = useState(false);
 	const [showUserTypeEditor, setShowUserTypeEditor] = useState(false);
+
+	const [bioUpdate, setBioUpdate] = useState("");
 	function toggleBioEditor() {
 		console.log("edit clicked");
 		setShowBioEditor((prev) => !prev);
@@ -85,6 +87,7 @@ const ProfileContent = ({ user }) => {
 					<ProfileInfoEditor
 						patchFunction={patchBio}
 						placeHolderText="Update Bio"
+						formSetter={setBioUpdate}
 					/>
 				) : (
 					user.bio

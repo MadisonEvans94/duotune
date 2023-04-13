@@ -1,14 +1,10 @@
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import UserContext from "../Components/Contexts/UserContext";
-import matches from "../seed/matches.json";
-import { FaUserFriends as Connect } from "react-icons/fa";
-import EditButton from "../Components/EditButton";
-import ProfileInfoEditor from "../Components/ProfileInfoEditor";
 import ArtistInfo from "../Components/ArtistInfo";
 import ProfileContent from "../Components/ProfileContent";
 const Profile = () => {
-	const { user, chatRoomObjects } = useContext(UserContext);
+	const { user } = useContext(UserContext);
 
 	return (
 		<>
