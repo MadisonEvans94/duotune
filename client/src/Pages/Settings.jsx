@@ -1,9 +1,7 @@
 import React from "react";
-
+import { useState } from "react";
 const Settings = () => {
-	return (
-		<div className="flex flex-row justify-center items-centers h-full"></div>
-	);
+	return <></>;
 };
 
 export default Settings;

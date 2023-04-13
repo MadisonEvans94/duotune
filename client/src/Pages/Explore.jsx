@@ -104,27 +104,15 @@ const Explore = () => {
 					</motion.div>
 				)}
 			</AnimatePresence>
-			<motion.div
-				className="
-				absolute top-1/2 cursor-pointer left-[10%] lg:mx-24"
-				initial={{ scale: 1, color: colors.accent }}
-				whileHover={{ scale: 1.1, color: colors.info }}>
-				<Left size="3em" onClick={leftClick} />
-			</motion.div>
-
-			<motion.div
-				className="absolute top-1/2 cursor-pointer right-[10%] lg:mx-24"
-				initial={{ scale: 1, color: colors.accent }}
-				whileHover={{ scale: 1.1, color: colors.info }}>
-				<Right size="3em" onClick={rightClick} />
-			</motion.div>
+			{SwipeLeft()}
+			{SwipeRight()}
 
 			<div className="flex flex-row justify-center items-center h-full">
 				<AnimatePresence mode="wait">
 					{userPool && collaboratorCount < userPool.length && (
 						<CollaboratorCard
 							key={userPool[collaboratorCount].id}
-							audioFile="https://res.cloudinary.com/degnyqukw/video/upload/v1680658098/carti_thing_ih9wft.mp3"
+							audioFile="https://res.cloudinary.com/degnyqukw/video/upload/v1681177822/SORRY_NOT_SORRY_lxkdaf.mp3"
 							userPool={userPool}
 							artistName={userPool[collaboratorCount].artist_name}
 							location={userPool[collaboratorCount].location}
@@ -140,6 +128,52 @@ const Explore = () => {
 			</div>
 		</div>
 	);
+
+	function SwipeRight() {
+		return (
+			<motion.div
+				className="absolute top-1/2 cursor-pointer right-[10%] lg:mx-24 text-accent"
+				initial={{
+					color: colors.accent,
+					filter: "drop-shadow(0px 0px 0px rgba(0, 0, 0, 1))",
+					transition: { duration: 0.1, type: "linear" },
+				}}
+				whileTap={{
+					color: colors.info,
+					filter: "drop-shadow(5px 3px 0px rgba(0, 0, 0, 1))",
+				}}
+				whileHover={{
+					color: colors.info,
+					filter: "drop-shadow(12px 8px 0px rgba(0, 0, 0, 1))",
+					transition: { duration: 0.05, type: "linear" },
+				}}>
+				<Right onClick={rightClick} className="text-[3em] xl:text-[6em]" />
+			</motion.div>
+		);
+	}
+	function SwipeLeft() {
+		return (
+			<motion.div
+				className="
+				absolute top-1/2 cursor-pointer left-[10%] lg:mx-24"
+				initial={{
+					color: colors.accent,
+					filter: "drop-shadow(0px 0px 0px rgba(0, 0, 0, 1))",
+					transition: { duration: 0.1, type: "linear" },
+				}}
+				whileTap={{
+					color: colors.info,
+					filter: "drop-shadow(5px 3px 0px rgba(0, 0, 0, 1))",
+				}}
+				whileHover={{
+					color: colors.info,
+					filter: "drop-shadow(12px 8px 0px rgba(0, 0, 0, 1))",
+					transition: { duration: 0.05, type: "linear" },
+				}}>
+				<Left onClick={leftClick} className="text-[3em] xl:text-[6em]" />
+			</motion.div>
+		);
+	}
 };
 
 export default Explore;

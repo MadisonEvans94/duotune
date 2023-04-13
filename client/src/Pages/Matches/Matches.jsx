@@ -39,32 +39,26 @@ export default function Matches() {
 			console.error("\n\nMATCHES COMPONENT: Error fetching data:", error);
 		}
 	};
-	const fetchSwipers = () => {
-		fetch(`/users/${user.id}`)
-			.then((response) => response.json())
-			.then((user) => console.log("USER SWIPES", user.swiper_swipes))
-			.catch((error) => console.log("ERROR:", error));
-	};
 
 	useEffect(() => {
 		fetchChatRoomObjects();
-		fetchSwipers();
+		console.log("SWIPED_SWIPES", user.swiped_swipes);
+		console.log("SWIPER_SWIPES", user.swiper_swipes);
 	}, []);
 
 	return (
 		<div className="h-full">
-			<div className="h-[200px] flex flex-row overflow-x-auto w-screen">
+			{/* <div className="h-[200px] flex flex-row overflow-x-auto w-screen">
 				{matches &&
 					matches.map((match, key) => <MatchCard key={key} match={match} />)}
-			</div>
-			<div className="flex flex-row h-[calc(100%-200px)]">
+			</div> */}
+			<div className="flex flex-row h-full">
 				{chatRoomObjects && (
 					<div className="border-r border-t">
 						<ChatRoomList
 							selectedChatRoomID={selectedChatRoomID}
 							setSelectedChatRoomID={setSelectedChatRoomID}
 							setDisplayedMessages={setDisplayedMessages}
-							chatRoomObjects={chatRoomObjects}
 							recipients={recipients}
 						/>
 					</div>

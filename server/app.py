@@ -75,8 +75,6 @@ class Users(Resource):
             201,
         )
         return response
-
-    
 class UsersbyID(Resource):
 
     def get(self, id):
@@ -125,9 +123,6 @@ class UsersbyID(Resource):
             204,
         )
         return response
-    
-# TODO: UserType
-
 class UserTypes(Resource):
 
     def get(self):
@@ -141,8 +136,6 @@ class UserTypes(Resource):
         )
 
         return response
-
-
 class UserTypesbyID(Resource):
 
     def get(self, id):
@@ -159,10 +152,6 @@ class UserTypesbyID(Resource):
         )
 
         return response
-
-
-
-# TODO: ChatRoom 
 class ChatRooms(Resource):
 
     def get(self):
@@ -176,8 +165,6 @@ class ChatRooms(Resource):
         )
 
         return response
-
-    
 class ChatRoomsbyID(Resource):
 
     def get(self, id):
@@ -194,9 +181,6 @@ class ChatRoomsbyID(Resource):
         )
 
         return response
-
-# TODO: Message
-
 class Messages(Resource):
 
     def get(self):
@@ -225,8 +209,7 @@ class Messages(Resource):
             jsonify(new_message.to_dict()),
             201
         )
-        return response
-    
+        return response 
 class MessagesbyID(Resource):
 
     def get(self, id):
@@ -243,7 +226,6 @@ class MessagesbyID(Resource):
         )
 
         return response
-    
 class Swipes(Resource):
     def post(self):
         data = request.get_json()
@@ -284,19 +266,7 @@ class Swipes(Resource):
             201)
         # If there is no mutual match, return a success message indicating that the swipe has been recorded
         return {'message': f'Swipe recorded. User {swiper_id} swiped on user {swiped_id}'}, 201
-    
-api.add_resource(Home, '/')
-api.add_resource(UsersbyID, '/users/<int:id>')
-api.add_resource(Users, '/users/')
-api.add_resource(UserTypes, '/user_types')
-api.add_resource(UserTypesbyID, '/user_types/<int:id>')
-api.add_resource(ChatRooms, '/chat_rooms')
-api.add_resource(ChatRoomsbyID, '/chat_rooms/<int:id>')
-api.add_resource(Messages, '/messages')
-api.add_resource(MessagesbyID, '/messages/<int:id>')
-api.add_resource(Swipes, '/swipes')
 
-# 14.✅ Create a Signup route
 class Signup(Resource):
     def post(self):
         form_json = request.get_json()
@@ -309,13 +279,7 @@ class Signup(Resource):
             jsonify(new_user.to_dict()),
             201
         )
-        return response
-    
-
-api.add_resource(Signup, '/signup', endpoint='signup')
-
-
-# 15. Create a Login route
+        return response  
 class Signin(Resource):
     def post(self):  
         user = User.query.filter_by(email=request.get_json()['email']).first()
@@ -333,11 +297,7 @@ class Signin(Resource):
         response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
         response.headers.add('Access-Control-Allow-Credentials', 'true')
         return response
-
-
-api.add_resource(Signin, '/signin')
-
-# 16. Create a route that checks to see if the User is currently in sessions
+    
 class AuthorizedSession(Resource):
     def get(self):
         print(session)
@@ -361,19 +321,30 @@ class AuthorizedSession(Resource):
                     401
                 )
 
-
-api.add_resource(AuthorizedSession, '/authorized')
-
-# 17. Create a Logout route
 class Logout(Resource):
     def delete(self):
         session['user_id'] = None
         response = make_response('session ended', 204)
         return response
 
+# RESTful routes 
+api.add_resource(Home, '/')
+api.add_resource(UsersbyID, '/users/<int:id>')
+api.add_resource(Users, '/users/')
+api.add_resource(UserTypes, '/user_types')
+api.add_resource(UserTypesbyID, '/user_types/<int:id>')
+api.add_resource(ChatRooms, '/chat_rooms')
+api.add_resource(ChatRoomsbyID, '/chat_rooms/<int:id>')
+api.add_resource(Messages, '/messages')
+api.add_resource(MessagesbyID, '/messages/<int:id>')
+api.add_resource(Swipes, '/swipes')
+
+# session related endpoints 
+api.add_resource(Signup, '/signup', endpoint='signup')
+api.add_resource(Signin, '/signin')
+api.add_resource(AuthorizedSession, '/authorized')
 api.add_resource(Logout, '/logout')
 
-# Add this error handler at the end of your app.py file
 @app.errorhandler(NotFound)
 def handle_not_found(e):
     response = make_response(
