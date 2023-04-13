@@ -140,7 +140,7 @@ const Explore = () => {
 				}}
 				whileTap={{
 					color: colors.info,
-					filter: "drop-shadow(8px 5px 0px rgba(0, 0, 0, 1))",
+					filter: "drop-shadow(5px 3px 0px rgba(0, 0, 0, 1))",
 				}}
 				whileHover={{
 					color: colors.info,
@@ -163,7 +163,7 @@ const Explore = () => {
 				}}
 				whileTap={{
 					color: colors.info,
-					filter: "drop-shadow(8px 5px 0px rgba(0, 0, 0, 1))",
+					filter: "drop-shadow(5px 3px 0px rgba(0, 0, 0, 1))",
 				}}
 				whileHover={{
 					color: colors.info,

@@ -6,7 +6,7 @@ import UserContext from "../Components/Contexts/UserContext";
 import { motion } from "framer-motion";
 import MorphingBlob from "../Components/MorphingBlob";
 import SignupForm from "../Components/SignupForm";
-import SigninForm from "../Components/SigninForm";
+import SigninForm from "../Components/SigninForm/SigninForm";
 
 const Signin = () => {
 	const navigate = useNavigate();

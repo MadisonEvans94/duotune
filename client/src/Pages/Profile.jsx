@@ -10,11 +10,19 @@ import EditButton from "../Components/EditButton";
 import ProfileInfoEditor from "../Components/ProfileInfoEditor";
 
 const Profile = () => {
-	const { user } = useContext(UserContext);
+	const { user, chatRoomObjects } = useContext(UserContext);
 	const [showBioEditor, setShowBioEditor] = useState(false);
 	const [showSongEditor, setShowSongEditor] = useState(false);
 	const [showUserTypeEditor, setShowUserTypeEditor] = useState(false);
-
+	console.log(
+		"PROFILE STUFF \n\n\n",
+		"user:",
+		user,
+		"userID:",
+		user.id,
+		"chatRoomObjects:",
+		chatRoomObjects
+	);
 	// TODO: bio editor
 	function toggleBioEditor() {
 		console.log("edit clicked");

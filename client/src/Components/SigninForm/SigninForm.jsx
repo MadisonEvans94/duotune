@@ -151,7 +151,8 @@ const SigninForm = ({ toggler, setUser, setIsLoggedIn }) => {
 										type="email"
 										autoComplete="email"
 										required
-										className="text-dark block w-full rounded-md border-0 py-1.5 px-2 open:shadow-sm placeholder:text-secondary focus:ring-2 focus:ring-inset focus:ring-accent sm:text-sm sm:leading-6"
+										placeholder="Enter Email Address"
+										className="text-dark block w-full rounded-md border-0 py-1.5 px-2 open:shadow-sm placeholder:text-[#C0C0C0] focus:ring-2 focus:ring-inset focus:ring-accent sm:text-sm sm:leading-6"
 										onChange={(e) => setEmail(e.target.value)}
 									/>
 								</div>
@@ -170,7 +171,8 @@ const SigninForm = ({ toggler, setUser, setIsLoggedIn }) => {
 										type="password"
 										autoComplete="current-password"
 										required
-										className="text-dark block w-full rounded-md border-0 py-1.5 px-2 open:shadow-sm placeholder:text-secondary focus:ring-2 focus:ring-inset focus:ring-accent sm:text-sm sm:leading-6"
+										placeholder="Enter Password"
+										className="text-dark block w-full rounded-md border-0 py-1.5 px-2 open:shadow-sm placeholder:text-[#C0C0C0] focus:ring-2 focus:ring-inset focus:ring-accent sm:text-sm sm:leading-6"
 										onChange={(e) => setPassword(e.target.value)}
 									/>
 								</div>

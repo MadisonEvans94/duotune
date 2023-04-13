@@ -5,6 +5,7 @@
     "@react-three/drei": "^9.65.3",
     "@react-three/fiber": "^8.12.0",
     "animejs": "^3.2.1",
+    "jest-fetch-mock": "^3.0.3",
     "three": "^0.151.3"
   }
 }
