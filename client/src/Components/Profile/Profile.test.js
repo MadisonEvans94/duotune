@@ -47,6 +47,7 @@ const mockAuthContextValue = {
 	isLoggedIn: true,
 	setIsLoggedIn: jest.fn(),
 };
+
 function renderWithContext(component) {
 	return render(
 		<Router>
@@ -85,4 +86,10 @@ it("renders correct section titles to the screen", async () => {
 	items.forEach((item) => {
 		expect(item).toBeInTheDocument();
 	});
+});
+
+it("populates the page with user's data", () => {
+	renderWithContext(profile);
+	const bioContent = screen.queryByText(/im a producer from arizona/i);
+	expect(bioContent).toBeInTheDocument();
 });

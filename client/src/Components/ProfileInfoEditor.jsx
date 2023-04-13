@@ -1,7 +1,7 @@
 import React from "react";
 import { FaTelegramPlane as Send } from "react-icons/fa";
 
-const ProfileInfoEditor = ({ patchFunction }) => {
+const ProfileInfoEditor = ({ patchFunction, placeHolderText }) => {
 	return (
 		<div className="flex flex-row">
 			<label htmlFor="bio" />
@@ -11,6 +11,7 @@ const ProfileInfoEditor = ({ patchFunction }) => {
 				className="w-full rounded text-primary"
 				name="bio"
 				type="text"
+				placeholder={placeHolderText}
 			/>
 			<button className="mx-2">
 				<Send
