@@ -102,7 +102,10 @@ const ProfileContent = ({ user }) => {
 
 			<div className="relative p-4 h-[150px] flex flex-col justify-around rounded-lg border-accent border transition">
 				{showSongEditor ? (
-					<ProfileInfoEditor patchFunction={patchSong} />
+					<ProfileInfoEditor
+						patchFunction={patchSong}
+						placeHolderText="Upload a New Song"
+					/>
 				) : (
 					<p>{user.song_sample}</p>
 				)}
