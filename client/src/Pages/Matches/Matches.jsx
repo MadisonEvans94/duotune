@@ -53,21 +53,11 @@ export default function Matches() {
 			<div className="flex flex-row h-full">
 				{chatRoomObjects && (
 					<div className="border-r border-t">
-						<ChatRoomList
-							selectedChatRoomID={selectedChatRoomID}
-							setSelectedChatRoomID={setSelectedChatRoomID}
-							setDisplayedMessages={setDisplayedMessages}
-						/>
+						<ChatRoomList />
 					</div>
 				)}
 				<div className="w-full pt-4 h-full flex flex-col border-t">
-					<ChatRoomContent
-						selectedChatRoomID={selectedChatRoomID}
-						setSelectedChatRoomID={setSelectedChatRoomID}
-						chatRoomObject={chatRoomObjects[0]}
-						displayedMessages={displayedMessages}
-						setDisplayedMessages={setDisplayedMessages}
-					/>
+					<ChatRoomContent />
 					<MessageInput />
 				</div>
 			</div>

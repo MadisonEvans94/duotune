@@ -3,12 +3,13 @@ import UserContext from "../Contexts/UserContext";
 import { useContext } from "react";
 
 import ChatRoom from "../ChatRoom/ChatRoom";
-const ChatRoomList = ({
-	selectedChatRoomID,
-	setSelectedChatRoomID,
-	setDisplayedMessages,
-}) => {
-	const { chatRoomObjects } = useContext(UserContext);
+const ChatRoomList = () => {
+	const {
+		chatRoomObjects,
+		setSelectedChatRoomID,
+		selectedChatRoomID,
+		setDisplayedMessages,
+	} = useContext(UserContext);
 
 	return chatRoomObjects.length > 0 ? (
 		<ul

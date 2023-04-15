@@ -1,14 +1,9 @@
 import React from "react";
-
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
-const ChatRoomContent = ({
-	displayedMessages,
-	setDisplayedMessages,
-	selectedChatRoomID,
-}) => {
-	const { user } = useContext(UserContext);
 
+const ChatRoomContent = ({ displayedMessages }) => {
+	const { user } = useContext(UserContext);
 	return (
 		<div className="h-full">
 			{displayedMessages ? (
