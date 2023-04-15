@@ -16,7 +16,6 @@ const ProfileInfoEditor = ({ patchFunction, placeHolderText }) => {
 				placeholder={placeHolderText}
 				onChange={(event) => {
 					setInputText(event.target.value);
-					console.log(event.target.value);
 				}}
 			/>
 			<button className="mx-2">

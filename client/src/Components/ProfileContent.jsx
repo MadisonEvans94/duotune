@@ -9,7 +9,6 @@ const ProfileContent = ({ user }) => {
 	const [showUserTypeEditor, setShowUserTypeEditor] = useState(false);
 
 	function toggleBioEditor() {
-		console.log("edit clicked");
 		setShowBioEditor((prev) => !prev);
 	}
 	const patchBio = async (value) => {
@@ -27,7 +26,6 @@ const ProfileContent = ({ user }) => {
 		};
 		const response = await fetch(`/users/${user.id}`, requestOptions);
 		const jsonResponse = await response.json();
-		console.log(jsonResponse);
 		toggleBioEditor();
 	};
 	function toggleSongEditor() {
@@ -47,11 +45,9 @@ const ProfileContent = ({ user }) => {
 			credentials: "include",
 		};
 
-		console.log("patch clicked\n", "need to find workaround for db");
 		toggleSongEditor();
 	};
 	function toggleUserTypeEditor() {
-		console.log("edit clicked");
 		setShowUserTypeEditor((prev) => !prev);
 	}
 	const patchUserType = async () => {
@@ -69,7 +65,6 @@ const ProfileContent = ({ user }) => {
 		};
 		const response = await fetch(`/users/${user.id}`, requestOptions);
 		const jsonResponse = await response.json();
-		console.log(jsonResponse);
 		toggleUserTypeEditor();
 	};
 
