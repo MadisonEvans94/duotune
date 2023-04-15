@@ -1,7 +1,5 @@
-import React, { useState } from "react";
-import { FaTelegramPlane as Send } from "react-icons/fa";
-import colors from "../utils/colorPalette";
-import { motion } from "framer-motion";
+import React from "react";
+
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
 const ChatRoomContent = ({
@@ -9,49 +7,13 @@ const ChatRoomContent = ({
 	setDisplayedMessages,
 	selectedChatRoomID,
 }) => {
-	const [formMessage, setFormMessage] = useState("");
 	const { user, chatRoomObjects } = useContext(UserContext);
 
 	console.log("SELECTED CHAT ROOM ------->>> : ", selectedChatRoomID);
 	console.log("CHATROOM OBJECTS ------->>> : ", chatRoomObjects);
-	const handleInputChange = (e) => {
-		setFormMessage(e.target.value);
-	};
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-		const message = {
-			content: formMessage,
-			chat_room_id: selectedChatRoomID,
-			sender_id: user.id,
-		};
-
-		try {
-			const response = await fetch("/messages", {
-				method: "POST",
-				headers: {
-					"Content-Type": "application/json",
-				},
-				body: JSON.stringify(message),
-			});
-
-			if (!response.ok) {
-				throw new Error("\n\nCHATROOM COMPONENT: Error sending message.");
-			}
-
-			const newMessage = await response.json();
-			setDisplayedMessages((prevMessages) =>
-				prevMessages ? [...prevMessages, newMessage] : [newMessage]
-			);
-
-			setFormMessage("");
-		} catch (error) {
-			console.error("\n\nCHATROOMCONTENT COMPONENT: Error:", error);
-		}
-	};
 
 	return (
-		<div className="w-full pt-4 h-full flex flex-col border-t">
+		<div className="h-full">
 			{displayedMessages ? (
 				<div className="px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto">
 					{displayedMessages.map((message, index) => {
@@ -80,45 +42,6 @@ const ChatRoomContent = ({
 					</div>
 				</div>
 			)}
-			<form
-				onSubmit={handleSubmit}
-				className="border-t w-full flex flex-row justify-center">
-				<input
-					className="border h-12 w-4/5 my-4 rounded-3xl px-6 xl:my-10"
-					type="text"
-					placeholder="message ..."
-					value={formMessage}
-					onChange={handleInputChange}
-				/>
-				<motion.button
-					initial={{
-						color: colors.accent,
-						filter: "drop-shadow(0px 0px 0px rgba(0, 0, 0, 1))",
-						transition: { duration: 0.1, type: "linear" },
-					}}
-					whileTap={{
-						color: colors.info,
-						filter: "drop-shadow(8px 5px 0px rgba(0, 0, 0, 1))",
-					}}
-					whileHover={{
-						color: colors.info,
-						filter: "drop-shadow(12px 8px 0px rgba(0, 0, 0, 1))",
-						transition: { duration: 0.05, type: "linear" },
-					}}
-					type="submit"
-					title="submit"
-					className="
-                    bg-none rounded-3xl my-auto ml-6 h-fit p-2 mx-3 text-light
-                    ">
-					<Send
-						size="3em"
-						className=""
-						style={{
-							transform: "translateX(-5%)",
-						}}
-					/>
-				</motion.button>
-			</form>
 		</div>
 	);
 };

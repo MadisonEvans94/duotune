@@ -1,20 +1,21 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import UserContext from "../../Components/Contexts/UserContext";
-
+import MessageInput from "../../Components/MessageInput";
 import ChatRoomList from "../../Components/ChatRoomList/ChatRoomList";
 import ChatRoomContent from "../../Components/ChatRoomContent";
 
 export default function Matches() {
-	const [displayedMessages, setDisplayedMessages] = useState(null);
 	const {
 		user,
 		chatRoomObjects,
 		setChatRoomObjects,
 		selectedChatRoomID,
 		setSelectedChatRoomID,
+		displayedMessages,
+		setDisplayedMessages,
+		setChatRoomUserInstances,
+		chatRoomUserInstances,
 	} = useContext(UserContext);
-
-	const [chatRoomUserInstances, setChatRoomUserInstances] = useState([]);
 
 	const fetchChatRoomObjects = async () => {
 		try {
@@ -60,13 +61,16 @@ export default function Matches() {
 						/>
 					</div>
 				)}
-				<ChatRoomContent
-					selectedChatRoomID={selectedChatRoomID}
-					setSelectedChatRoomID={setSelectedChatRoomID}
-					chatRoomObject={chatRoomObjects[0]}
-					displayedMessages={displayedMessages}
-					setDisplayedMessages={setDisplayedMessages}
-				/>
+				<div className="w-full pt-4 h-full flex flex-col border-t">
+					<ChatRoomContent
+						selectedChatRoomID={selectedChatRoomID}
+						setSelectedChatRoomID={setSelectedChatRoomID}
+						chatRoomObject={chatRoomObjects[0]}
+						displayedMessages={displayedMessages}
+						setDisplayedMessages={setDisplayedMessages}
+					/>
+					<MessageInput />
+				</div>
 			</div>
 		</div>
 	);
