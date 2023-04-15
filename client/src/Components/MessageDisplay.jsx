@@ -1,12 +1,12 @@
 import React from "react";
-import { useEffect } from "react";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import UserContext from "./Contexts/UserContext";
 import MessageBubble from "./MessageBubble";
 const MessageDisplay = () => {
-	const { user, displayedMessages } = useContext(UserContext);
-	console.log("displayedMessages: ", displayedMessages);
-	useEffect(() => {}, [displayedMessages]);
+	const { user, displayedMessages, setDisplayedMessages } =
+		useContext(UserContext);
+
+	useEffect(() => {}, [setDisplayedMessages, displayedMessages]);
 	return (
 		<div className="h-full w-full">
 			{displayedMessages && (

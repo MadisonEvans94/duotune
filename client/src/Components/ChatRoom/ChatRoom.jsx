@@ -4,8 +4,12 @@ import { useEffect, useState } from "react";
 import UserContext from "../Contexts/UserContext";
 const ChatRoom = ({ chatRoomObject }) => {
 	const [otherUser, setOtherUser] = useState(null);
-	const { user, setDisplayedMessages, setSelectedChatRoomID } =
-		useContext(UserContext);
+	const {
+		user,
+		setDisplayedMessages,
+		setSelectedChatRoomID,
+		displayedMessages,
+	} = useContext(UserContext);
 
 	function populateChatRoom() {
 		setSelectedChatRoomID(chatRoomObject.id);
@@ -25,7 +29,7 @@ const ChatRoom = ({ chatRoomObject }) => {
 			setOtherUser(otherUser);
 		};
 		fetchOtherUser().catch(console.error);
-	}, [chatRoomObject.chat_room_users, user.id]);
+	}, [displayedMessages]);
 
 	return (
 		otherUser && (
