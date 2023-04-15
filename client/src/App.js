@@ -11,13 +11,25 @@ import AuthContext from "./Components/Contexts/AuthContext";
 import ProtectedRoute from "./Components/ProtectedRoute";
 
 function App() {
+	function addMessageToChatRoom(chatRoomID, message) {
+		setChatRoomObjects((prevChatRoomObjects) =>
+			prevChatRoomObjects.map((chatRoomObject) =>
+				chatRoomObject.id === chatRoomID
+					? {
+							...chatRoomObject,
+							messages: [...chatRoomObject.messages, message],
+					  }
+					: chatRoomObject
+			)
+		);
+	}
+	const [selectedChatRoomID, setSelectedChatRoomID] = useState(null);
 	const [userID, setUserID] = useState(null);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [user, setUser] = useState(null);
 	const [displayedMessages, setDisplayedMessages] = useState(null);
 	const [chatRoomUserInstances, setChatRoomUserInstances] = useState([]);
-	const [selectedChatRoomID, setSelectedChatRoomID] = useState(null);
 	const [chatRoomObjects, setChatRoomObjects] = useState([]);
 	function fetchUser(id, callback) {
 		fetch(`/users/${id}`)
@@ -58,12 +70,13 @@ function App() {
 					fetchUser,
 					chatRoomObjects,
 					setChatRoomObjects,
-					selectedChatRoomID,
-					setSelectedChatRoomID,
 					displayedMessages,
 					setDisplayedMessages,
 					chatRoomUserInstances,
 					setChatRoomUserInstances,
+					addMessageToChatRoom,
+					selectedChatRoomID,
+					setSelectedChatRoomID,
 				}}>
 				<AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
 					<Router>

@@ -8,9 +8,13 @@ import { motion } from "framer-motion";
 const MessageInput = () => {
 	const [formMessage, setFormMessage] = useState("");
 
-	const { user, selectedChatRoomID, setDisplayedMessages } =
-		useContext(UserContext);
-
+	const {
+		user,
+		selectedChatRoomID,
+		setDisplayedMessages,
+		addMessageToChatRoom,
+	} = useContext(UserContext);
+	console.log(selectedChatRoomID);
 	const handleInputChange = (e) => {
 		setFormMessage(e.target.value);
 	};
@@ -35,6 +39,8 @@ const MessageInput = () => {
 				throw new Error("\n\nCHATROOM COMPONENT: Error sending message.");
 			}
 			const newMessage = await response.json();
+
+			addMessageToChatRoom(selectedChatRoomID, newMessage);
 			setDisplayedMessages((prevMessages) =>
 				prevMessages ? [...prevMessages, newMessage] : [newMessage]
 			);

@@ -13,7 +13,7 @@ const ChatRoomList = () => {
 				lg:w-80
 				xl:w-96">
 			{chatRoomObjects.map((chatRoomObject, key) => (
-				<ChatRoom key={key} chatRoomObject={chatRoomObject} />
+				<ChatRoom key={key} chatRoomID={chatRoomObject.id} />
 			))}
 		</ul>
 	) : (
