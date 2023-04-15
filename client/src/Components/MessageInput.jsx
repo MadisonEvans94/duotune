@@ -24,6 +24,7 @@ const MessageInput = () => {
 		};
 
 		try {
+			console.log("MESSAGEINPUT: ");
 			const response = await fetch("/messages", {
 				method: "POST",
 				headers: {

@@ -7,7 +7,9 @@ const ChatRoomContent = ({ displayedMessages }) => {
 	return (
 		<div className="h-full">
 			{displayedMessages ? (
-				<div className="px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto">
+				<div
+					className="
+					px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto">
 					{displayedMessages.map((message, index) => {
 						const isUser = message.sender_id === user.id;
 						return (
@@ -27,8 +29,12 @@ const ChatRoomContent = ({ displayedMessages }) => {
 					})}
 				</div>
 			) : (
-				<div className="px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto  flex flex-col justify-center items-center">
-					<div className="p-32 rounded-lg text-accent font-thin italic">
+				<div
+					className="
+					px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto  flex flex-col justify-center items-center">
+					<div
+						className="
+						p-32 rounded-lg text-accent font-thin italic">
 						{" "}
 						No Messages ...
 					</div>
