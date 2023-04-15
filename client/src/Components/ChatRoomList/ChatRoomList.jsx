@@ -7,19 +7,8 @@ const ChatRoomList = ({
 	selectedChatRoomID,
 	setSelectedChatRoomID,
 	setDisplayedMessages,
-	recipients,
 }) => {
-	const { user, chatRoomObjects } = useContext(UserContext);
-
-	const updatedRecipients = recipients.filter(
-		(value) => value.user_id !== user.id
-	);
-	console.log(
-		"\n\nCHATROOMLIST COMPONENT: \n'chatRoomObjects':",
-		chatRoomObjects,
-		"UpdatedRecipients: \n",
-		updatedRecipients
-	);
+	const { chatRoomObjects } = useContext(UserContext);
 
 	return chatRoomObjects.length > 0 ? (
 		<ul

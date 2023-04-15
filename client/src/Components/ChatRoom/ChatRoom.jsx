@@ -11,7 +11,6 @@ const ChatRoom = ({
 	const { user } = useContext(UserContext);
 
 	function populateChatRoom() {
-		console.log("CHATROOM COMPONENT: SET SELECTED CHATROOM: ", chatRoomObject);
 		setSelectedChatRoomID(chatRoomObject.id);
 		console.log(chatRoomObject);
 		setDisplayedMessages(chatRoomObject.messages);

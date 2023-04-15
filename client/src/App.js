@@ -15,6 +15,7 @@ function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [loading, setLoading] = useState(true);
 	const [user, setUser] = useState(null);
+	const [selectedChatRoomID, setSelectedChatRoomID] = useState(null);
 	const [chatRoomObjects, setChatRoomObjects] = useState([]);
 	function fetchUser(id, callback) {
 		fetch(`/users/${id}`)
@@ -55,6 +56,8 @@ function App() {
 					fetchUser,
 					chatRoomObjects,
 					setChatRoomObjects,
+					selectedChatRoomID,
+					setSelectedChatRoomID,
 				}}>
 				<AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
 					<Router>

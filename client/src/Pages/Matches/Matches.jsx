@@ -1,17 +1,21 @@
 import { useEffect, useState, useContext } from "react";
 import UserContext from "../../Components/Contexts/UserContext";
-import matches from "../../seed/matches.json";
+
 import ChatRoomList from "../../Components/ChatRoomList/ChatRoomList";
 import ChatRoomContent from "../../Components/ChatRoomContent";
-import MatchCard from "../../Components/MatchCard";
 
 export default function Matches() {
 	const [displayedMessages, setDisplayedMessages] = useState(null);
-	const { user, chatRoomObjects, setChatRoomObjects } = useContext(UserContext);
-	const [recipients, setRecipients] = useState([]);
+	const {
+		user,
+		chatRoomObjects,
+		setChatRoomObjects,
+		selectedChatRoomID,
+		setSelectedChatRoomID,
+	} = useContext(UserContext);
+
 	const [chatRoomUserInstances, setChatRoomUserInstances] = useState([]);
-	const [selectedChatRoomID, setSelectedChatRoomID] = useState(null);
-	const [swipers, setSwipers] = useState(null);
+
 	const fetchChatRoomObjects = async () => {
 		try {
 			setChatRoomUserInstances(user.chat_rooms);
@@ -42,16 +46,10 @@ export default function Matches() {
 
 	useEffect(() => {
 		fetchChatRoomObjects();
-		console.log("SWIPED_SWIPES", user.swiped_swipes);
-		console.log("SWIPER_SWIPES", user.swiper_swipes);
 	}, []);
 
 	return (
 		<div className="h-full">
-			{/* <div className="h-[200px] flex flex-row overflow-x-auto w-screen">
-				{matches &&
-					matches.map((match, key) => <MatchCard key={key} match={match} />)}
-			</div> */}
 			<div className="flex flex-row h-full">
 				{chatRoomObjects && (
 					<div className="border-r border-t">
@@ -59,7 +57,6 @@ export default function Matches() {
 							selectedChatRoomID={selectedChatRoomID}
 							setSelectedChatRoomID={setSelectedChatRoomID}
 							setDisplayedMessages={setDisplayedMessages}
-							recipients={recipients}
 						/>
 					</div>
 				)}
