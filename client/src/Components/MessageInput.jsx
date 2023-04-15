@@ -24,7 +24,6 @@ const MessageInput = () => {
 		};
 
 		try {
-			console.log("MESSAGEINPUT: ");
 			const response = await fetch("/messages", {
 				method: "POST",
 				headers: {
@@ -32,16 +31,13 @@ const MessageInput = () => {
 				},
 				body: JSON.stringify(message),
 			});
-
 			if (!response.ok) {
 				throw new Error("\n\nCHATROOM COMPONENT: Error sending message.");
 			}
-
 			const newMessage = await response.json();
 			setDisplayedMessages((prevMessages) =>
 				prevMessages ? [...prevMessages, newMessage] : [newMessage]
 			);
-
 			setFormMessage("");
 		} catch (error) {
 			console.error("\n\nCHATROOMCONTENT COMPONENT: Error:", error);
@@ -50,9 +46,11 @@ const MessageInput = () => {
 	return (
 		<form
 			onSubmit={handleSubmit}
-			className="border-t w-full flex flex-row justify-center">
+			className="
+            border-t w-full flex flex-row justify-center">
 			<input
-				className="border h-12 w-4/5 my-4 rounded-3xl px-6 xl:my-10"
+				className="
+                border h-12 w-4/5 my-4 rounded-3xl px-6 xl:my-10"
 				type="text"
 				placeholder="message ..."
 				value={formMessage}

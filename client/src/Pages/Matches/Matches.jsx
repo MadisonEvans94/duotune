@@ -2,7 +2,7 @@ import { useEffect, useContext } from "react";
 import UserContext from "../../Components/Contexts/UserContext";
 import MessageInput from "../../Components/MessageInput";
 import ChatRoomList from "../../Components/ChatRoomList/ChatRoomList";
-import ChatRoomContent from "../../Components/ChatRoomContent";
+import MessageDisplay from "../../Components/MessageDisplay";
 
 export default function Matches() {
 	const {
@@ -57,7 +57,7 @@ export default function Matches() {
 					</div>
 				)}
 				<div className="w-full pt-4 h-full flex flex-col border-t">
-					<ChatRoomContent />
+					<MessageDisplay />
 					<MessageInput />
 				</div>
 			</div>
