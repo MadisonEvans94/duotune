@@ -2,13 +2,10 @@ import React, { useContext } from "react";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import UserContext from "../Contexts/UserContext";
-const ChatRoom = ({
-	chatRoomObject,
-	setDisplayedMessages,
-	setSelectedChatRoomID,
-}) => {
+const ChatRoom = ({ chatRoomObject }) => {
 	const [otherUser, setOtherUser] = useState(null);
-	const { user } = useContext(UserContext);
+	const { user, setDisplayedMessages, setSelectedChatRoomID } =
+		useContext(UserContext);
 
 	function populateChatRoom() {
 		setSelectedChatRoomID(chatRoomObject.id);

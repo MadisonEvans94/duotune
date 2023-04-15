@@ -7,10 +7,7 @@ const ChatRoomContent = ({
 	setDisplayedMessages,
 	selectedChatRoomID,
 }) => {
-	const { user, chatRoomObjects } = useContext(UserContext);
-
-	console.log("SELECTED CHAT ROOM ------->>> : ", selectedChatRoomID);
-	console.log("CHATROOM OBJECTS ------->>> : ", chatRoomObjects);
+	const { user } = useContext(UserContext);
 
 	return (
 		<div className="h-full">

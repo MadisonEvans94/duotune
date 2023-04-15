@@ -14,7 +14,6 @@ export default function Matches() {
 		displayedMessages,
 		setDisplayedMessages,
 		setChatRoomUserInstances,
-		chatRoomUserInstances,
 	} = useContext(UserContext);
 
 	const fetchChatRoomObjects = async () => {
