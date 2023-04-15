@@ -4,12 +4,7 @@ import { useContext } from "react";
 
 import ChatRoom from "../ChatRoom/ChatRoom";
 const ChatRoomList = () => {
-	const {
-		chatRoomObjects,
-		setSelectedChatRoomID,
-		selectedChatRoomID,
-		setDisplayedMessages,
-	} = useContext(UserContext);
+	const { chatRoomObjects } = useContext(UserContext);
 
 	return chatRoomObjects.length > 0 ? (
 		<ul
@@ -18,13 +13,7 @@ const ChatRoomList = () => {
 				lg:w-80
 				xl:w-96">
 			{chatRoomObjects.map((chatRoomObject, key) => (
-				<ChatRoom
-					setSelectedChatRoomID={setSelectedChatRoomID}
-					selectedChatRoomID={selectedChatRoomID}
-					key={key}
-					chatRoomObject={chatRoomObject}
-					setDisplayedMessages={setDisplayedMessages}
-				/>
+				<ChatRoom key={key} chatRoomObject={chatRoomObject} />
 			))}
 		</ul>
 	) : (

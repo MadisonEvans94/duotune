@@ -1,43 +1,27 @@
 import React from "react";
+import { useEffect } from "react";
 import { useContext } from "react";
 import UserContext from "./Contexts/UserContext";
-
-const MessageDisplay = ({ displayedMessages }) => {
-	const { user } = useContext(UserContext);
+import MessageBubble from "./MessageBubble";
+const MessageDisplay = () => {
+	const { user, displayedMessages } = useContext(UserContext);
+	console.log("displayedMessages: ", displayedMessages);
+	useEffect(() => {}, [displayedMessages]);
 	return (
-		<div className="h-full">
-			{displayedMessages ? (
-				<div
-					className="
-					px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto">
+		<div className="h-full w-full">
+			{displayedMessages && (
+				<div className="px-6">
 					{displayedMessages.map((message, index) => {
 						const isUser = message.sender_id === user.id;
 						return (
-							<div
+							<MessageBubble
 								key={index}
-								className={`flex flex-row ${
-									isUser ? "justify-end" : "justify-start"
-								} mb-4`}>
-								<p
-									className={`px-4 py-2 rounded-lg shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] ${
-										isUser ? "bg-accent text-info" : "bg-gray-200 text-dark"
-									}`}>
-									{message.content}
-								</p>
-							</div>
+								index={index}
+								isUser={isUser}
+								content={message.content}
+							/>
 						);
 					})}
-				</div>
-			) : (
-				<div
-					className="
-					px-4 sm:px-6 w-full h-0 flex-grow even:p-6 overflow-y-auto  flex flex-col justify-center items-center">
-					<div
-						className="
-						p-32 rounded-lg text-accent font-thin italic">
-						{" "}
-						No Messages ...
-					</div>
 				</div>
 			)}
 		</div>

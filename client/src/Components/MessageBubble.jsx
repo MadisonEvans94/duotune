@@ -1,6 +1,7 @@
 import React from "react";
 
 const MessageBubble = ({ index, isUser, content }) => {
+	console.log(content);
 	return (
 		<div
 			key={index}

@@ -9,7 +9,6 @@ const ChatRoom = ({ chatRoomObject }) => {
 
 	function populateChatRoom() {
 		setSelectedChatRoomID(chatRoomObject.id);
-		console.log(chatRoomObject);
 		setDisplayedMessages(chatRoomObject.messages);
 	}
 
@@ -37,15 +36,24 @@ const ChatRoom = ({ chatRoomObject }) => {
 				onClick={populateChatRoom}
 				className="font-display py-4 flex flex-row pl-2">
 				<img
-					className="h-10 w-10 rounded-full object-cover xl:h-20 xl:w-20"
+					className="
+					h-10 w-10 rounded-full object-cover xl:h-20 xl:w-20"
 					src={otherUser.profile_picture_url}
 					alt="placeholder"
 				/>
-				<div className="ml-3 flex flex-col justify-center items-center xl:ml-6">
-					<p className="text-sm font-medium text-info xl:text-xl ">
+				<div
+					className="
+					ml-3 flex flex-col justify-center items-center xl:ml-6">
+					<p
+						className="
+						text-sm font-medium text-info xl:text-xl ">
 						{otherUser.artist_name}
 					</p>
-					<p className="text-xs text-accent">{otherUser.user_type.name}</p>
+					<p
+						className="
+						text-xs text-accent">
+						{otherUser.user_type.name}
+					</p>
 				</div>
 			</motion.li>
 		)
