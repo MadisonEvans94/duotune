@@ -9,10 +9,6 @@ export default function Matches() {
 		user,
 		chatRoomObjects,
 		setChatRoomObjects,
-		selectedChatRoomID,
-		setSelectedChatRoomID,
-		displayedMessages,
-		setDisplayedMessages,
 		setChatRoomUserInstances,
 	} = useContext(UserContext);
 
@@ -49,17 +45,13 @@ export default function Matches() {
 	}, []);
 
 	return (
-		<div className="h-full">
-			<div className="flex flex-row h-full">
-				{chatRoomObjects && (
-					<div className="border-r border-t">
-						<ChatRoomList />
-					</div>
-				)}
-				<div className="w-full pt-4 h-full flex flex-col border-t">
-					<MessageDisplay />
-					<MessageInput />
-				</div>
+		<div className="h-full flex flex-row ">
+			<div className="border-r border-t">
+				{chatRoomObjects && <ChatRoomList />}
+			</div>
+			<div className="w-full pt-4 h-full flex flex-col border-t">
+				<MessageDisplay />
+				<MessageInput />
 			</div>
 		</div>
 	);
