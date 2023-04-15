@@ -3,7 +3,7 @@ import UserContext from "../../Components/Contexts/UserContext";
 import MessageInput from "../../Components/MessageInput";
 import ChatRoomList from "../../Components/ChatRoomList/ChatRoomList";
 import MessageDisplay from "../../Components/MessageDisplay";
-
+import ChatRoomLayout from "../../Components/Layouts/ChatRoomLayout";
 export default function Matches() {
 	const {
 		user,
@@ -45,14 +45,11 @@ export default function Matches() {
 	}, []);
 
 	return (
-		<div className="h-full flex flex-row ">
-			<div className="border-r border-t">
-				{chatRoomObjects && <ChatRoomList />}
-			</div>
-			<div className="w-full pt-4 h-full flex flex-col border-t">
-				<MessageDisplay />
-				<MessageInput />
-			</div>
-		</div>
+		<ChatRoomLayout
+			chatRoomObjects={chatRoomObjects}
+			ChatRoomList={ChatRoomList}
+			MessageDisplay={MessageDisplay}
+			MessageInput={MessageInput}
+		/>
 	);
 }
