@@ -42,18 +42,8 @@ We welcome contributions from developers interested in improving DuoTune! The pr
 4. Start the development servers.
 
 #### Contributing Guidelines
-1. Create a new branch for your feature or bugfix.
 
-`git checkout -b feature/your-feature-name`
-2. Make your changes and test them thoroughly.
-3. Commit and push your changes to your forked repository.
-
-`git add .`
-`git commit -m "Add your commit message here"`
-`git push origin feature/your-feature-name`
-4. Open a pull request on the original repository with a clear description of the changes you have made and any additional information that may be relevant.
-
-Once your pull request has been reviewed, we will either merge your changes or provide feedback for further improvements.
+I am currently not accepting contributions at the moment
 
 
 
