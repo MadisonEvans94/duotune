@@ -23,7 +23,7 @@ DuoTune is a full-stack web app designed to connect producers and musicians seek
 
 ## Contributing
 
-We welcome contributions from developers interested in improving DuoTune! The project is open for enhancements, bug fixes, and new features.
+I welcome contributions from developers interested in improving DuoTune! The project is open for enhancements, bug fixes, and new features.
 
 ### Getting Started
 
